@@ -1,0 +1,7 @@
+/.idea
+/vendor
+/.phpunit.cache
+/tests/*.json
+composer.lock
+.php-cs-fixer.cache
+.phpunit.result.cache

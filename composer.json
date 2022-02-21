@@ -1,0 +1,54 @@
+{
+    "name": "richarddobron/laravel-fbt",
+    "description": "A PHP Internationalization Framework for Laravel Application.",
+	"keywords": ["php", "i18n", "framework", "internationalization", "laravel", "blade", "directive", "translations"],
+    "require": {
+        "php": "^7.0",
+        "ext-json": "*",
+        "ext-dom": "*",
+        "ext-iconv": "*",
+        "ext-mbstring": "*",
+        "illuminate/contracts": "~5.5.0",
+        "illuminate/support": "~5.5.0",
+        "richarddobron/fbt": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.3",
+        "orchestra/testbench": "~3.5.0",
+        "orchestra/database": "~3.5.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "fbt\\LaravelPackage\\FbtServiceProvider"
+            ]
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard Dobroň"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/fbt/LaravelPackage/helpers.php"
+        ],
+        "psr-0": {
+            "fbt\\LaravelPackage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "post-merge": "composer install",
+        "test": "vendor/bin/phpunit --colors=always"
+    },
+    "scripts-descriptions": {
+        "test": "Run all tests."
+    },
+    "minimum-stability": "dev"
+}
