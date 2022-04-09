@@ -31,7 +31,7 @@ class Token extends Model
         'singular' => 'bool',
     ];
 
-    const UPDATED_AT = null;
+    public const UPDATED_AT = null;
 
     //--Relationships---------------------------------------------------------------------------------------------------
 

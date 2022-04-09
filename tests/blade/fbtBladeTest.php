@@ -6,7 +6,7 @@ namespace tests\blade;
 
 class fbtBladeTest extends \tests\TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

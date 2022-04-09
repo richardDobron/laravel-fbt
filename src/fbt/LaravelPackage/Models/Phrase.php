@@ -29,7 +29,7 @@ class Phrase extends Model
 {
     protected $table = 'fbt_phrases';
 
-    const UPDATED_AT = null;
+    public const UPDATED_AT = null;
 
     protected $casts = [
         'id' => 'int',

@@ -4,7 +4,7 @@
 ```php
 class FbtConstants
 {
-    const PRONOUN_USAGE = [
+    public const PRONOUN_USAGE = [
         "OBJECT" => 0,
         "POSSESSIVE" => 1,
         "REFLEXIVE" => 2,
@@ -14,7 +14,7 @@ class FbtConstants
 
 class Gender
 {
-    const GENDER_CONST = [
+    public const GENDER_CONST = [
         'NOT_A_PERSON' => 0,
         'FEMALE_SINGULAR' => 1,
         'MALE_SINGULAR' => 2,

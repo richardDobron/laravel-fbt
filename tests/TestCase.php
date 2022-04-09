@@ -39,7 +39,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         ]);
     }
 
-    protected function loadMigrationsFrom($paths)
+    protected function loadMigrationsFrom($paths): void
     {
         $paths = (is_array($paths)) ? $paths : [$paths];
         $this->app->afterResolving('migrator', function ($migrator) use ($paths) {
@@ -49,7 +49,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         });
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

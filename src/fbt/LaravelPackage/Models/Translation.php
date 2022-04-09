@@ -25,7 +25,7 @@ class Translation extends Model
 {
     protected $table = 'fbt_translations';
 
-    const UPDATED_AT = null;
+    public const UPDATED_AT = null;
 
     protected $casts = [
         'id' => 'int',
@@ -40,7 +40,7 @@ class Translation extends Model
         'views' => 'int',
     ];
 
-    const TOKEN_VARIATION_DELIMITER = '%';
+    public const TOKEN_VARIATION_DELIMITER = '%';
 
     public function extractTokens(): array
     {
@@ -57,7 +57,7 @@ class Translation extends Model
                 continue;
             }
 
-            list($token, $variation) = explode(self::TOKEN_VARIATION_DELIMITER, $rawData);
+            [$token, $variation] = explode(self::TOKEN_VARIATION_DELIMITER, $rawData);
             $variations[$token] = $variation;
         }
 

@@ -8,3 +8,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 - PHP Internationalization Framework for Laravel 5.5.
+
+## v4.0 - 2022-04-09
+
+### Added
+- Support for Laravel 5.6 or higher.
