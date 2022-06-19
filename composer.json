@@ -10,7 +10,7 @@
         "ext-mbstring": "*",
         "illuminate/contracts": "~5.5.0",
         "illuminate/support": "~5.5.0",
-        "richarddobron/fbt": "^3.0"
+        "richarddobron/fbt": "^3.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.3",

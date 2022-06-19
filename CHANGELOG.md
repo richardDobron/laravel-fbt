@@ -8,3 +8,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ### Added
 - PHP Internationalization Framework for Laravel 5.5.
+
+## v3.0.1 - 2022-06-19
+
+### Changed
+- Translation registration will handle the fbt dependency.

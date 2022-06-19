@@ -13,7 +13,6 @@ use fbt\LaravelPackage\Models\Token;
 use fbt\LaravelPackage\Models\Translation;
 use fbt\LaravelPackage\Services\FbtSourceStringsService;
 use fbt\Lib\IntlViewerContextInterface;
-use fbt\Runtime\FbtTranslations;
 use fbt\Runtime\Shared\FbtHooks;
 use fbt\Transform\FbtTransform\FbtConstants;
 use fbt\Transform\FbtTransform\FbtTransform;
@@ -251,11 +250,5 @@ class FbtServiceProvider extends ServiceProvider
         FbtConfig::setMultiple(config('fbt'));
 
         $this->registerHooks();
-
-        $translations = FbtConfig::get('path') . '/translatedFbts.json';
-
-        if (file_exists($translations)) {
-            FbtTranslations::registerTranslations(json_decode(file_get_contents($translations), true));
-        }
     }
 }
