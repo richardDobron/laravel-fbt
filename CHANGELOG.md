@@ -14,7 +14,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ### Added
 - Support for Laravel 5.6 or higher.
 
-## v4.1 - 2022-06-19
+## v4.0.1 - 2022-06-19
 
 ### Changed
 - Translation registration will handle the fbt dependency.
