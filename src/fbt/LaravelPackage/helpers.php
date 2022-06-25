@@ -2,8 +2,6 @@
 
 namespace fbt\LaravelPackage;
 
-use Illuminate\Support\HtmlString;
-
 /**
  * @param mixed $value
  * @param array $array
@@ -24,24 +22,24 @@ function search_group_array($value, array $array)
  * @param string|array $text
  * @param string $desc
  * @param array $options
- * @return HtmlString
+ * @return \fbt\LaravelPackage\fbt
  *
  * @throws \fbt\Exceptions\FbtParserException
  */
 function fbt($text, string $desc, array $options = [])
 {
-    return new HtmlString(\fbt\fbt($text, $desc, $options));
+    return new \fbt\LaravelPackage\fbt($text, $desc, $options);
 }
 
 /**
  * @param string|array $text
  * @param string $desc
  * @param array $options
- * @return HtmlString
+ * @return \fbt\LaravelPackage\fbs
  *
  * @throws \fbt\Exceptions\FbtParserException
  */
 function fbs($text, string $desc, array $options = [])
 {
-    return new HtmlString(\fbt\fbs($text, $desc, $options));
+    return \fbt\LaravelPackage\fbs($text, $desc, $options);
 }
