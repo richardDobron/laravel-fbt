@@ -158,6 +158,29 @@ echo fbt('You just friended ' . \fbt\fbt::name('name', 'Sarah', 2 /* gender */),
 // result: A simple string
 ```
 
+### Encoding in Blade
+using `\fbt\LaravelPackage` namespace
+```php
+$htmlText = \fbt\LaravelPackage\fbt('<strong>STRONG</strong> text', 'HTML text');
+
+{{ $htmlText }}
+// result: <strong>STRONG</strong> text
+
+{!! $htmlText !!}
+// result: <strong>STRONG</strong> text
+```
+
+using `\fbt` namespace
+```php
+$htmlText = \fbt\fbt('<strong>STRONG</strong> text', 'HTML text');
+
+{{ $htmlText }}
+// result: &amp;lt;strong&amp;gt;STRONG&amp;lt;/strong&amp;gt; text
+
+{!! $htmlText !!}
+// result: <strong>STRONG</strong> text
+```
+
 ### PhpStorm integration
 
 The PhpStorm IDE can recognize the custom Blade directive if is set in *File > Settings > Languages & Frameworks > PHP >
