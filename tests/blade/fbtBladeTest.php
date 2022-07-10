@@ -50,7 +50,7 @@ class fbtBladeTest extends \tests\TestCase
 
         $text = \fbt\LaravelPackage\fbt('View', 'Button/Link: View something');
         $lfbtText = \fbt\LaravelPackage\fbt('<strong>STRONG</strong> text', 'HTML text');
-        $fbtText = \fbt\fbt('<strong>STRONG</strong> text', 'HTML text');
+        $fbtText = \fbt('<strong>STRONG</strong> text', 'HTML text');
 
         $rendered = $this->app['view']->make('fbt-reporting')->with(compact('text', 'lfbtText', 'fbtText'))->render();
 
