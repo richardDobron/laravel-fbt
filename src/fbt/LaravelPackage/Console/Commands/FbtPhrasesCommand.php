@@ -23,6 +23,10 @@ class FbtPhrasesCommand extends Command
 
     public function handle(FbtSourceStringsService $fbtSourceStringsService)
     {
-        $fbtSourceStringsService->exportPhrases($this->option('pretty'));
+        try {
+            $fbtSourceStringsService->exportPhrases($this->option('pretty'));
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
     }
 }

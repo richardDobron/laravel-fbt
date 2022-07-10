@@ -1,11 +1,27 @@
 # Translating
 
 There are two ways to translate phrases:
-1. Manually translate generated JSON file.
+1. Manually translate generated JSON file by `php artisan fbt:generate-translations` and then use the `php artisan fbt:translate` command.
 2. Manually add translations to the database and then use the `php artisan fbt:translate` command.
 3. Use the app editor [Swiftyper Translations](https://github.com/swiftyper-sk/laravel-fbt-sync).
 
-## Artisan command:
+## Command to generate missing translation hashes from collected source strings:
+**⚠️ NOTE: This command is required only if you are using `json` driver.**
+
+```shell
+php artisan fbt:generate-translations --translation-input=./storage/fbt/translation_input.json
+# or
+php artisan fbt:generate-translations --translations=./storage/fbt/translations/*.json
+```
+
+### Options:
+| name                    | default                                         | description                                                                                               |
+|-------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| --src                   | `FbtConfig::get('path')`/.source_strings.json   | Path to collected source strings file                                                                     |
+| --translation-input     | `FbtConfig::get('path')`/translation_input.json | Path to translation input file                                                                            |
+| --translations=`[path]` | *none*                                          | The translation files containing translations.<br>E.g. `--translations=./storage/fbt/translations/*.json` |
+
+## Artisan command to convert provided translations to jenkins:
 ```shell
 php artisan fbt:translate
 # or
@@ -13,6 +29,7 @@ php artisan fbt:translate --stdin < translation_input.json
 # or
 php artisan fbt:translate --translations=/path/to/translations/*.json
 ```
+
 ### Options:
 | name                             | default | description                                                                                                                                                               |
 |----------------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
