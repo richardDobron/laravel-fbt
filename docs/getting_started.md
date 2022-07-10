@@ -159,7 +159,7 @@ echo fbt('You just friended ' . \fbt\fbt::name('name', 'Sarah', 2 /* gender */),
 ```
 
 ### Encoding in Blade
-using `\fbt\LaravelPackage` namespace
+using `\fbt\LaravelPackage\fbt` function
 ```php
 $htmlText = \fbt\LaravelPackage\fbt('<strong>STRONG</strong> text', 'HTML text');
 
@@ -170,9 +170,9 @@ $htmlText = \fbt\LaravelPackage\fbt('<strong>STRONG</strong> text', 'HTML text')
 // result: <strong>STRONG</strong> text
 ```
 
-using `\fbt` namespace
+using `\fbt` function
 ```php
-$htmlText = \fbt\fbt('<strong>STRONG</strong> text', 'HTML text');
+$htmlText = \fbt('<strong>STRONG</strong> text', 'HTML text');
 
 {{ $htmlText }}
 // result: &amp;lt;strong&amp;gt;STRONG&amp;lt;/strong&amp;gt; text
