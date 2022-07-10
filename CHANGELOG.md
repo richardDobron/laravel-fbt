@@ -4,6 +4,14 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.0.4- 2022-07-10
+
+### Changed
+- Update `fbt` dependency to 3.0.4.
+
+### Added
+- Command to generate missing translation hashes
+
 ## v3.0.3 - 2022-06-25
 
 ### Changed
