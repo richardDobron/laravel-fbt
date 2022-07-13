@@ -18,14 +18,14 @@ class fbtBladeTest extends \tests\TestCase
 
     public function testFbtDirective()
     {
-        $this->assertMatchesTextSnapshot(
+        $this->assertMatchesSnapshot(
             $this->app['view']->make('fbt')->render()
         );
     }
 
     public function testMultilineFbtDirective()
     {
-        $this->assertMatchesTextSnapshot(
+        $this->assertMatchesSnapshot(
             $this->app['view']->make('fbt-multiline')->render()
         );
     }
@@ -54,14 +54,14 @@ class fbtBladeTest extends \tests\TestCase
 
         $rendered = $this->app['view']->make('fbt-reporting')->with(compact('text', 'lfbtText', 'fbtText'))->render();
 
-        $this->assertMatchesTextSnapshot($rendered);
+        $this->assertMatchesSnapshot($rendered);
 
         FbtHooks::unregister('canInline');
     }
 
     public function testHtmlFbt()
     {
-        $this->assertMatchesTextSnapshot(
+        $this->assertMatchesSnapshot(
             $this->app['view']->make('fbt-html')->render()
         );
     }

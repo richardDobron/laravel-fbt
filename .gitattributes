@@ -11,3 +11,5 @@
 /phpunit.xml.dist            export-ignore
 /tests                       export-ignore
 /docs                        export-ignore
+
+tests/**/__snapshots__/** text eol=lf
