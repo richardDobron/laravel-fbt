@@ -10,7 +10,7 @@ FBT is an internationalization framework for Laravel Application designed to be 
 **This library is based on the JavaScript implementation of Facebook's [FBT][link-facebook-fbt].**
 
 ## Requirements
-* Laravel 5.5
+* Laravel 5.5 or higher
 * [Composer](https://getcomposer.org) is required for installation
 
 ## Installing
