@@ -1,4 +1,6 @@
-<?php return '<table role="presentation" class="uiInfoTable">
+<?php
+
+return '<table role="presentation" class="uiInfoTable">
     <tbody>
     <tr>
         <th class="label">

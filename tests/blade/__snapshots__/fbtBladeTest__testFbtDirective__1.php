@@ -1,1 +1,3 @@
-<?php return 'A simple string';
+<?php
+
+return 'A simple string';
