@@ -4,9 +4,12 @@ namespace tests;
 
 use fbt\FbtConfig;
 use fbt\LaravelPackage\FbtServiceProvider;
+use Spatie\Snapshots\MatchesSnapshots;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
+    use MatchesSnapshots;
+
     /**
      * Load package service provider.
      *
