@@ -11,6 +11,11 @@ class FbtSourceStringsService
     private $phrases = [];
     private $childToParent = [];
 
+    /**
+     * @throws \fbt\Exceptions\FbtInvalidConfigurationException
+     * @throws \fbt\Exceptions\FbtException
+     * @throws \Exception
+     */
     public function exportPhrases(bool $pretty = false)
     {
         $fbtDir = FbtConfig::get('path') . '/';
@@ -56,6 +61,14 @@ class FbtSourceStringsService
             'childParentMappings' => $this->childToParent,
         ];
 
-        file_put_contents($fbtDir . '.source_strings.json', json_encode($phrasesOutput, $flags));
+        $file = $fbtDir . '.source_strings.json';
+
+        if (!is_dir($fbtDir) || !is_writable($fbtDir)) {
+            throw new \Exception("Directory $fbtDir is not writable.");
+        } else if (is_file($file) && !is_writable($file)) {
+            throw new \Exception("File $file is not writable.");
+        }
+
+        file_put_contents($file, json_encode($phrasesOutput, $flags));
     }
 }
