@@ -5,6 +5,7 @@ namespace fbt\LaravelPackage\Services;
 use fbt\FbtConfig;
 use fbt\LaravelPackage\Models\Phrase;
 use fbt\Transform\FbtTransform\Utils\TextPackager;
+use function fbt\LaravelPackage\searchSubArray;
 
 class FbtSourceStringsService
 {
@@ -48,7 +49,7 @@ class FbtSourceStringsService
             ];
 
             if ($phrase->parent_id !== null) {
-                $this->childToParent[count($this->phrases) - 1] = \fbt\LaravelPackage\search_group_array($phrase->parent_id, $parentIds);
+                $this->childToParent[count($this->phrases) - 1] = searchSubArray($phrase->parent_id, $parentIds);
             }
 
             $sourceIds[] = $phrase->source->id;
