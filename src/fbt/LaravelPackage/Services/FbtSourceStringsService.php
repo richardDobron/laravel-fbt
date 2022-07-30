@@ -4,8 +4,10 @@ namespace fbt\LaravelPackage\Services;
 
 use fbt\FbtConfig;
 use fbt\LaravelPackage\Models\Phrase;
-use fbt\Transform\FbtTransform\Utils\TextPackager;
+
 use function fbt\LaravelPackage\searchSubArray;
+
+use fbt\Transform\FbtTransform\Utils\TextPackager;
 
 class FbtSourceStringsService
 {
@@ -64,9 +66,9 @@ class FbtSourceStringsService
 
         $file = $fbtDir . '.source_strings.json';
 
-        if (!is_dir($fbtDir) || !is_writable($fbtDir)) {
+        if (! is_dir($fbtDir) || ! is_writable($fbtDir)) {
             throw new \Exception("Directory $fbtDir is not writable.");
-        } else if (is_file($file) && !is_writable($file)) {
+        } elseif (is_file($file) && ! is_writable($file)) {
             throw new \Exception("File $file is not writable.");
         }
 

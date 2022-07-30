@@ -4,7 +4,9 @@ namespace fbt\LaravelPackage;
 
 use Carbon\Carbon;
 use fbt\FbtConfig;
+
 use function fbt\invariant;
+
 use fbt\LaravelPackage\Console\Commands\FbtGenerateTranslationsCommand;
 use fbt\LaravelPackage\Console\Commands\FbtPhrasesCommand;
 use fbt\LaravelPackage\Console\Commands\FbtTranslateCommand;
