@@ -24,9 +24,6 @@ class FbtGenerateTranslationsCommand extends Command
      */
     protected $description = 'Generate missing translation hashes from collected source strings.';
 
-    /**
-     * @throws \fbt\Exceptions\FbtException
-     */
     public function handle(TranslationsGeneratorService $translationsGeneratorService)
     {
         $path = FbtConfig::get('path');
