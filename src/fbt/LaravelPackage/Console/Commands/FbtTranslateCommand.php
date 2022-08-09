@@ -24,16 +24,17 @@ class FbtTranslateCommand extends Command
      */
     protected $description = 'Translate fbt phrases with provided translations.';
 
-    /**
-     * @throws \fbt\Exceptions\FbtException
-     */
     public function handle(TranslationsGeneratorService $translationsGeneratorService)
     {
-        $translationsGeneratorService->exportTranslations(
-            FbtConfig::get('path'),
-            $this->option('translations'),
-            $this->option('stdin') ? file_get_contents("php://stdin") : null,
-            $this->option('pretty')
-        );
+        try {
+            $translationsGeneratorService->exportTranslations(
+                FbtConfig::get('path'),
+                $this->option('translations'),
+                $this->option('stdin') ? file_get_contents("php://stdin") : null,
+                $this->option('pretty')
+            );
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
     }
 }
