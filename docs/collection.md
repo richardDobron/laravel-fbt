@@ -1,13 +1,12 @@
 # Extracting FBTs
 
 ```shell
-php artisan collect-fbts --src=./path/to/project/
+php artisan fbt:collect-fbts --src=./path/to/project/
 ```
 
 ### Options:
 | name            | default                                       | description                                                      |
 |-----------------|-----------------------------------------------|------------------------------------------------------------------|
-| --src=`[path]`  | `FbtConfig::get('path')`/.source_strings.json | Cache storage path for source strings                            |
 | --path=`[path]` | *none*                                        | The directory where you want to scan usages of fbt in php files. |
 
 ⚠️ Unlike Facebook's version of fbt, we primarily collect `<fbt>` & translate strings during script execution.

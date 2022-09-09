@@ -4,7 +4,10 @@ namespace fbt\LaravelPackage;
 
 use Carbon\Carbon;
 use fbt\FbtConfig;
+use fbt\LaravelPackage\Console\Commands\FbtCollectCommand;
+
 use function fbt\invariant;
+
 use fbt\LaravelPackage\Console\Commands\FbtGenerateTranslationsCommand;
 use fbt\LaravelPackage\Console\Commands\FbtPhrasesCommand;
 use fbt\LaravelPackage\Console\Commands\FbtTranslateCommand;
@@ -43,6 +46,7 @@ class FbtServiceProvider extends ServiceProvider
         $this->commands([
             FbtGenerateTranslationsCommand::class,
             FbtTranslateCommand::class,
+            FbtCollectCommand::class,
             FbtPhrasesCommand::class,
         ]);
 
