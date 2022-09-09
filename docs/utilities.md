@@ -23,7 +23,6 @@ recursively combining fbts.
 **Note that genders are not used in this `fbt:param` instances, so they default to `UNKNOWN`**
 
 ### intlNumUtils and intlSummarizeNumber
-
 There are a few utilities in both `intlNumUtils` and
 `intlSummarizeNumber` that are documented in the source.
 

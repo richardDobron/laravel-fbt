@@ -1,6 +1,6 @@
 # Parameters and interpolation
 
-**<span style="color:red">⚠️ NOTE: Content of `fbt:param` and `fbt:name` will not be escaped!</span>**<br/>
+**⚠️ NOTE: Content of `fbt:param` and `fbt:name` will not be escaped!**
 
 Interpolation of dynamic text and other markup is accomplished in the FBT framework via `<fbt:param>` or `fbt::param`:
 
