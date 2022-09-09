@@ -1,4 +1,7 @@
-# Auto-parameterization
+
+# What is Auto Parameterization?
+
+## The basics
 
 `<fbt>` will automatically wrap any non-fbt children in the top-level
 `<fbt>` as though they were written with an `<fbt:param>` with a

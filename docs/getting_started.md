@@ -30,20 +30,20 @@ The following options can be defined:
 
 * **project** `string`: (Default: `website app`) Project to which the text belongs
 * **author** `string`: Text author
-* **logger** `bool`: (Default: `false`) Logging of string impressions.
-* **collectFbt** `bool`: (Default: `true`) Collect fbt instances from the source and store them in a database or a JSON file.
 * **preserveWhitespace** `bool`: (Default: `false`)
   - FBT normally consolidates whitespace down to one space (`' '`).
   - Turn this off by setting this to `true`
 * **viewerContext** `string`: (Default: `\fbt\Runtime\Shared\IntlViewerContext::class`)
 * **locale** `string`: (Default: `en_US`) User locale.
-* **hash_module** `string`: (Default: `md5`) Hash module.
-* **md5_digest** `string`: (Default: `hex`) MD5 digest.
 * **fbtCommon** `string`: (Default: `[]`) common string's, e.g. `[['text' => 'desc'], ...]`
 * **fbtCommonPath** `string`: (Default: `null`) Path to the common string's module.
 
 Below are the less important parameters.
 
+* **logger** `bool`: (Default: `false`) Logging of string impressions.
+* **collectFbt** `bool`: (Default: `true`) Collect fbt instances from the source and store them in a database or a JSON file.
+* **hash_module** `string`: (Default: `md5`) Hash module.
+* **md5_digest** `string`: (Default: `hex`) MD5 digest.
 * **driver** `string`: (Default: `eloquent`) Driver.
 * **path** `string`: Cache storage path for generated translations & source strings.
 
