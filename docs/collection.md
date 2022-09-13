@@ -1,5 +1,7 @@
 # Extracting FBTs
 
+We provide `collect-fbts` as a utility for collecting strings.
+
 ```shell
 php artisan fbt:collect-fbts --src=./path/to/project/
 ```
