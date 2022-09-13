@@ -27,6 +27,7 @@ class FbtCollectCommand extends Command
     {
         if (! $this->option('path')) {
             $this->error('--path option is required.');
+
             return 1;
         }
 
