@@ -3,8 +3,8 @@
 namespace fbt\LaravelPackage\Services;
 
 use fbt\FbtConfig;
-use fbt\Runtime\Shared\FbtHooks;
 use function fbt\rsearch;
+use fbt\Runtime\Shared\FbtHooks;
 
 class CollectFbtsService extends \fbt\Services\CollectFbtsService
 {
