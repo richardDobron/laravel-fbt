@@ -86,8 +86,20 @@ class User extends Authenticatable implements IntlViewerContextInterface
 
 **Note:** `auth()->user()` will be attached to `viewerContext` automatically.
 
-## 	🚀 Artisan Command
-This command creates translation payloads stored in database/JSON file.
+## 	🚀 Artisan Commands
+
+1. This command collects FBT strings across whole application in PHP files.
+```shell
+php artisan fbt:collect-fbts
+```
+Read more about [FBTs extracting](collection.md).
+
+2. This command generates the missing translation hashes from collected source strings.
+```shell
+php artisan fbt:generate-translations
+```
+
+3. This command creates translation payloads stored in database/JSON file.
 ```shell
 php artisan fbt:translate
 ```
