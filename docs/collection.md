@@ -5,9 +5,10 @@ php artisan fbt:collect-fbts --src=./path/to/project/
 ```
 
 ### Options:
-| name            | default                                       | description                                                      |
-|-----------------|-----------------------------------------------|------------------------------------------------------------------|
-| --path=`[path]` | *none*                                        | The directory where you want to scan usages of fbt in php files. |
+| name             | default | description                                                      |
+|------------------|---------|------------------------------------------------------------------|
+| --path=`[path]`  | ./app   | The directory where you want to scan usages of fbt in php files. |
+| --views=`[bool]` | true    | Automatic scan for the /resources/views directory.               |
 
 ⚠️ Unlike Facebook's version of fbt, we primarily collect `<fbt>` & translate strings during script execution.
 
