@@ -30,7 +30,6 @@ class FbtCollectCommand extends Command
                 $this->option('path')
             );
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
             $this->error($e->getMessage());
         }
     }
