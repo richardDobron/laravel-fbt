@@ -27,7 +27,7 @@ php artisan fbt:translate
 # or
 php artisan fbt:translate --stdin < translation_input.json
 # or
-php artisan fbt:translate --translations=/path/to/translations/*.json
+php artisan fbt:translate --translations=./storage/fbt/translations/*.json
 ```
 
 ### Options:
