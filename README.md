@@ -9,7 +9,10 @@ FBT is an internationalization framework for Laravel Application designed to be 
 
 **This library is based on the JavaScript implementation of Facebook's [FBT][link-facebook-fbt].**
 
-<img src="/docs/intro.png" alt="FBT intro"/>
+<img src="docs/intro.png" alt="FBT intro"/>
+<img src="docs/plurals.png" alt="FBT plurals"/>
+<img src="docs/enum.png" alt="FBT enum"/>
+<img src="docs/pronouns.png" alt="FBT pronouns"/>
 
 ## Requirements
 * Laravel 5.5 or higher
