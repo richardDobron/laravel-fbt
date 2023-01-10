@@ -42,6 +42,8 @@ class Translation extends Model
 
     public const TOKEN_VARIATION_DELIMITER = '%';
 
+    //--Methods---------------------------------------------------------------------------------------------------------
+
     public function extractTokens(): array
     {
         $variations = [];
