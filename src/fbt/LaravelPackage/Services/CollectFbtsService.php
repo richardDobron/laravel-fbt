@@ -17,6 +17,11 @@ class CollectFbtsService extends \fbt\Services\CollectFbtsService
         return preg_replace_callback('/\B@(fbt)(\( ( (?>[^()]+) | (?2) )* \))?/x', $callback, $value);
     }
 
+    /**
+     * @throws \fbt\Exceptions\FbtInvalidConfigurationException
+     * @throws \Throwable
+     * @throws \fbt\Exceptions\FbtParserException
+     */
     public function collectFromBladeFiles(string $path, string $src)
     {
         $fbtDir = $path . '/';

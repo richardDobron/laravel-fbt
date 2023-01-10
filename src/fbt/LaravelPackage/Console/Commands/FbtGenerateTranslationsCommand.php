@@ -34,8 +34,12 @@ class FbtGenerateTranslationsCommand extends Command
                 $this->option('translations'),
                 $this->option('translations-input') ?: $path . "/translation_input.json"
             );
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $this->error($e->getMessage());
+
+            return 1;
         }
+
+        return 0;
     }
 }

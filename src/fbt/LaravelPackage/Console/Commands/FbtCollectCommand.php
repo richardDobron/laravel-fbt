@@ -23,7 +23,7 @@ class FbtCollectCommand extends Command
      */
     protected $description = 'Collect fbt instances from source.';
 
-    public function handle(CollectFbtsService $collectFbtsService)
+    public function handle(CollectFbtsService $collectFbtsService): int
     {
         if (! $this->option('path')) {
             $this->error('--path option is required.');
@@ -43,9 +43,12 @@ class FbtCollectCommand extends Command
                     base_path('resources/views/')
                 );
             }
-        } catch (\Exception $e) {
-            var_dump($e->getMessage());
+        } catch (\Throwable $e) {
             $this->error($e->getMessage());
+
+            return 1;
         }
+
+        return 0;
     }
 }

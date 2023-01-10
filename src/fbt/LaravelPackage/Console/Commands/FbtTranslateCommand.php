@@ -24,7 +24,7 @@ class FbtTranslateCommand extends Command
      */
     protected $description = 'Translate fbt phrases with provided translations.';
 
-    public function handle(TranslationsGeneratorService $translationsGeneratorService)
+    public function handle(TranslationsGeneratorService $translationsGeneratorService): int
     {
         try {
             $translationsGeneratorService->exportTranslations(
@@ -33,8 +33,12 @@ class FbtTranslateCommand extends Command
                 $this->option('stdin') ? file_get_contents("php://stdin") : null,
                 $this->option('pretty')
             );
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $this->error($e->getMessage());
+
+            return 1;
         }
+
+        return 0;
     }
 }

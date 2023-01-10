@@ -21,12 +21,16 @@ class FbtPhrasesCommand extends Command
      */
     protected $description = 'Generate fbt source strings.';
 
-    public function handle(FbtSourceStringsService $fbtSourceStringsService)
+    public function handle(FbtSourceStringsService $fbtSourceStringsService): int
     {
         try {
             $fbtSourceStringsService->exportPhrases($this->option('pretty'));
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $this->error($e->getMessage());
+
+            return 1;
         }
+
+        return 0;
     }
 }

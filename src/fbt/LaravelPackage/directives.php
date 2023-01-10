@@ -14,7 +14,7 @@ return [
     },
 
     'fbs' => function ($expression) {
-        return '<?php echo \fbt(' . $expression . '); ?>';
+        return '<?php echo \fbs(' . $expression . '); ?>';
     },
 
     /*
