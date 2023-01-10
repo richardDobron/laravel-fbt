@@ -4,6 +4,11 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v4.0.10 - 2022-01-10
+
+### Changed
+- Update `fbt` dependency to 4.0.10.
+
 ## v4.0.9 - 2022-12-16
 
 ### Changed
