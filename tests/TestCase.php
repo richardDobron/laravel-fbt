@@ -45,21 +45,19 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         ]);
     }
 
-    protected function loadMigrationsFrom($paths): void
+    private function setUpDatabase(): void
     {
-        $paths = (is_array($paths)) ? $paths : [$paths];
-        $this->app->afterResolving('migrator', function ($migrator) use ($paths) {
-            foreach ($paths as $path) {
-                $migrator->path($path);
-            }
-        });
+        $this->loadMigrationsFrom([
+            '--database' => 'testing',
+            '--path' => dirname(__DIR__) . '/migrations',
+        ]);
     }
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(dirname(__DIR__) . '/migrations');
+        $this->setUpDatabase();
     }
 
     public function assertMatchesSnapshot($actual, Driver $driver = null): void
