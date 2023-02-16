@@ -1,0 +1,17 @@
+{
+    "sk_SK": {
+        "fb-locale": "sk_SK",
+        "translations": {
+            "5484cc530aff8e1f4e3ea8dc28775f7e": {
+                "translations": [
+                    {
+                        "translation": "Jednoduchý reťazec",
+                        "variations": []
+                    }
+                ],
+                "tokens": [],
+                "types": []
+            }
+        }
+    }
+}

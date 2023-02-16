@@ -24,7 +24,7 @@ class CreateTranslationsTable extends Migration
             $table->string('token3')->nullable();
             $table->string('token4')->nullable();
             $table->string('locale', 5)->index();
-            $table->bigInteger('views');
+            $table->bigInteger('views')->default(0);
             $table->dateTime('created_at');
         });
     }

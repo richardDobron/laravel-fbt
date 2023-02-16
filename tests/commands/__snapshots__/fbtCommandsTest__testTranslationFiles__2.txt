@@ -1,0 +1,8 @@
+{
+    "sk_SK": {
+        "1a9q3q": [
+            "Jednoduchý reťazec",
+            "5484cc530aff8e1f4e3ea8dc28775f7e"
+        ]
+    }
+}
