@@ -4,12 +4,14 @@ namespace tests;
 
 use fbt\FbtConfig;
 use fbt\LaravelPackage\FbtServiceProvider;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Spatie\Snapshots\Driver;
 use Spatie\Snapshots\MatchesSnapshots;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
-    use MatchesSnapshots  {
+    use DatabaseMigrations;
+    use MatchesSnapshots {
         assertMatchesSnapshot as protected assertMatchesSnapshotCall;
     }
 
@@ -62,7 +64,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         $this->loadMigrationsFrom(dirname(__DIR__) . '/migrations');
     }
 
-    public function assertMatchesSnapshot($actual, Driver $driver = null): void
+    public function assertMatchesSnapshot($actual, Driver $driver = null)
     {
         $this->assertMatchesSnapshotCall($actual, $driver ?? new TextDriver());
     }
