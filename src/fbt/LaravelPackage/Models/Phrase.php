@@ -81,4 +81,9 @@ class Phrase extends Model
     {
         return $this->hasMany(Token::class, 'phrase_id', 'id');
     }
+
+    public function translations(): HasMany
+    {
+        return $this->hasMany(Translation::class, 'phrase_id', 'id');
+    }
 }
