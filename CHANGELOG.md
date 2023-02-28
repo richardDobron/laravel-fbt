@@ -4,6 +4,11 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v4.0.12 - 2023-02-28
+
+### Fixed
+- Added missing `--fbt-common-path` parameter for `fbt:collect-fbts` command
+
 ## v4.0.11 - 2023-02-03
 
 ### Changed
