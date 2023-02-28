@@ -44,6 +44,16 @@ class Translation extends Model
 
     //--Methods---------------------------------------------------------------------------------------------------------
 
+    public function setUpdatedAt($value)
+    {
+        // fixed laravel 5.5 updated_at issue
+        if (!empty(self::UPDATED_AT)) {
+            return parent::setUpdatedAt($value);
+        }
+
+        return $this;
+    }
+
     public function extractTokens(): array
     {
         $variations = [];

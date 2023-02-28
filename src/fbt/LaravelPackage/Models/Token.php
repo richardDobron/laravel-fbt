@@ -33,6 +33,18 @@ class Token extends Model
 
     const UPDATED_AT = null;
 
+    //--Methods---------------------------------------------------------------------------------------------------------
+
+    public function setUpdatedAt($value)
+    {
+        // fixed laravel 5.5 updated_at issue
+        if (!empty(self::UPDATED_AT)) {
+            return parent::setUpdatedAt($value);
+        }
+
+        return $this;
+    }
+
     //--Relationships---------------------------------------------------------------------------------------------------
 
     public function phrase(): HasOne
