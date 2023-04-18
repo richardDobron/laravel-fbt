@@ -27,6 +27,13 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         return [FbtServiceProvider::class];
     }
 
+    protected function resolveApplicationConfiguration($app)
+    {
+        parent::resolveApplicationConfiguration($app);
+
+        $app->config->set('fbt.driver', 'eloquent');
+    }
+
     /**
      * Define environment setup.
      *
