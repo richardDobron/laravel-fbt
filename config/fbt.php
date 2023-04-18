@@ -67,7 +67,7 @@ return [
      * Driver.
      * eloquent / json
      */
-    'driver' => 'eloquent',
+    'driver' => 'json',
 
     /*
      * Debug.
