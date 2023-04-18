@@ -44,7 +44,7 @@ Below are the less important parameters.
 * **collectFbt** `bool`: (Default: `true`) Collect fbt instances from the source and store them in a database or a JSON file.
 * **hash_module** `string`: (Default: `md5`) Hash module.
 * **md5_digest** `string`: (Default: `hex`) MD5 digest.
-* **driver** `string`: (Default: `eloquent`) Driver.
+* **driver** `string`: (Default: `json`) Driver.
 * **path** `string`: Cache storage path for generated translations & source strings.
 
 
