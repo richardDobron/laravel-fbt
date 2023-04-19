@@ -4,6 +4,14 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.1.0 - 2023-04-19
+### Changed
+- Update `fbt` dependency to 3.1.0.
+- Changed default driver to `json`
+
+### Added
+- Added a new `--clean-cache=` parameter (default: true) for the `fbt:collect-fbts` command. This parameter allows for automatic deletion of the `.source_strings.json` file.
+
 ## v3.0.12 - 2023-03-01
 
 ### Fixed
