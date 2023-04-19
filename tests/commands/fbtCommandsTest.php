@@ -53,8 +53,6 @@ class fbtCommandsTest extends \tests\TestCase
             '--path' => dirname(__DIR__),
         ]);
 
-        FbtHooks::storePhrases();
-
         $this->assertMatchesSnapshot(file_get_contents($fbtDir . '.source_strings.json'));
     }
 }

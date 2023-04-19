@@ -185,10 +185,8 @@ class FbtServiceProvider extends ServiceProvider
                     throw $e;
                 }
 
-                if (FbtHooks::$sourceHashes) {
-                    $fbtSourceStringsService = new FbtSourceStringsService();
-                    $fbtSourceStringsService->exportPhrases();
-                }
+                $fbtSourceStringsService = new FbtSourceStringsService();
+                $fbtSourceStringsService->exportPhrases();
 
                 FbtTransform::$childToParent = [];
                 FbtTransform::$phrases = [];
