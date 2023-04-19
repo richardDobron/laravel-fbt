@@ -15,7 +15,8 @@ class FbtCollectCommand extends Command
      */
     protected $signature = 'fbt:collect-fbts {--path=./app : The directory where you want to scan usages of fbt in php files}
                                              {--fbt-common-path= : Optional path to the common strings module.}
-                                             {--views=true : Automatic compilation of the /resources/views directory.}';
+                                             {--views=true : Automatic compilation of the /resources/views directory.}
+                                             {--clean-cache=true : Remove cache file .source_strings.json.}';
 
     /**
      * The console command description.
@@ -36,7 +37,8 @@ class FbtCollectCommand extends Command
             $collectFbtsService->collectFromFiles(
                 FbtConfig::get('path'),
                 $this->option('path'),
-                (string)$this->option('fbt-common-path')
+                (string)$this->option('fbt-common-path'),
+                $this->option('clean-cache') === 'true'
             );
 
             if ($this->option('views') === 'true') {
