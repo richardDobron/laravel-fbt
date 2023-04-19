@@ -7,10 +7,12 @@ php artisan fbt:collect-fbts --src=./path/to/project/
 ```
 
 ### Options:
-| name             | default | description                                                      |
-|------------------|---------|------------------------------------------------------------------|
-| --path=`[path]`  | ./app   | The directory where you want to scan usages of fbt in php files. |
-| --views=`[bool]` | true    | Automatic scan for the /resources/views directory.               |
+| name                       | default | description                                                      |
+|----------------------------|---------|------------------------------------------------------------------|
+| --path=`[path]`            | ./app   | The directory where you want to scan usages of fbt in php files. |
+| --fbt-common-path=`[path]` | -       | Optional path to the common strings module.                      |
+| --views=`[bool]`           | true    | Automatic scan for the `/resources/views` directory.             |
+| --clean-cache=`[bool]`     | true    | Remove cache file `.source_strings.json`.                        |
 
 ⚠️ Unlike Facebook's version of fbt, we primarily collect `<fbt>` & translate strings during script execution.
 
