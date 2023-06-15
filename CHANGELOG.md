@@ -4,8 +4,13 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v4.1.1 - 2023-06-15
+### Added
+- Support for Laravel 10
+
 ## v4.1.0 - 2023-04-19
 ### Changed
+- Update `fbt` dependency to 4.1.0.
 - Changed default driver to `json`
 
 ### Added
