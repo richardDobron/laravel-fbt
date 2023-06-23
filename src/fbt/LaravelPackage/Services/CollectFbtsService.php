@@ -4,21 +4,13 @@ namespace fbt\LaravelPackage\Services;
 
 use fbt\FbtConfig;
 
+use Illuminate\Support\Facades\Blade;
 use function fbt\rsearch;
 
 use fbt\Runtime\Shared\FbtHooks;
 
 class CollectFbtsService extends \fbt\Services\CollectFbtsService
 {
-    public function compileStatements(string $value)
-    {
-        $callback = function ($match) {
-            return isset($match[2]) ? '<?=' . $match[1] . $match[2] . '?>' : '';
-        };
-
-        return preg_replace_callback('/\B@(fbt)(\( ( (?>[^()]+) | (?2) )* \))?/x', $callback, $value);
-    }
-
     /**
      * @throws \fbt\Exceptions\FbtInvalidConfigurationException
      * @throws \Throwable
@@ -35,9 +27,19 @@ class CollectFbtsService extends \fbt\Services\CollectFbtsService
         FbtConfig::set('path', $path);
 
         foreach (rsearch($src, '/.blade.php$/') as $path) {
-            $this->collectFromOneFile($this->compileStatements(file_get_contents($path)), $path);
+            $this->collectFromOneFile($this->renderBladeView($path), $path);
         }
 
         FbtHooks::storePhrases();
     }
+
+    protected function renderBladeView(string $path): string
+    {
+        try {
+            return Blade::compileString(file_get_contents($path));
+        } catch (\Exception $e) {
+            return '';
+        }
+    }
+
 }

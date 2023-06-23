@@ -13,9 +13,8 @@ class FbtCollectCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fbt:collect-fbts {--path=./app : The directory where you want to scan usages of fbt in php files}
+    protected $signature = 'fbt:collect-fbts {--path=./app, ./resources/views : The directory where you want to scan usages of fbt in php files}
                                              {--fbt-common-path= : Optional path to the common strings module.}
-                                             {--views=true : Automatic compilation of the /resources/views directory.}
                                              {--clean-cache=true : Remove cache file .source_strings.json.}';
 
     /**
@@ -34,17 +33,19 @@ class FbtCollectCommand extends Command
         }
 
         try {
-            $collectFbtsService->collectFromFiles(
-                FbtConfig::get('path'),
-                $this->option('path'),
-                (string)$this->option('fbt-common-path'),
-                $this->option('clean-cache') === 'true'
-            );
+            $paths = preg_split('/\s*,\s*/', $this->option('path'));
 
-            if ($this->option('views') === 'true') {
+            foreach ($paths as $path) {
+                $collectFbtsService->collectFromFiles(
+                    FbtConfig::get('path'),
+                    $path,
+                    (string)$this->option('fbt-common-path'),
+                    $this->option('clean-cache') === 'true'
+                );
+
                 $collectFbtsService->collectFromBladeFiles(
                     FbtConfig::get('path'),
-                    base_path('resources/views/')
+                    $path
                 );
             }
         } catch (\Throwable $e) {
