@@ -4,10 +4,11 @@ namespace fbt\LaravelPackage\Services;
 
 use fbt\FbtConfig;
 
-use Illuminate\Support\Facades\Blade;
 use function fbt\rsearch;
 
 use fbt\Runtime\Shared\FbtHooks;
+
+use Illuminate\Support\Facades\Blade;
 
 class CollectFbtsService extends \fbt\Services\CollectFbtsService
 {
@@ -41,5 +42,4 @@ class CollectFbtsService extends \fbt\Services\CollectFbtsService
             return '';
         }
     }
-
 }
