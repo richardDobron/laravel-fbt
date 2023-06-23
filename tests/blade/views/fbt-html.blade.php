@@ -31,11 +31,11 @@
 </table>
 
 <p>
-    <fbt desc="Table Desc">
-        Click <fbt:enum enum-range="{{ json_encode(['here', 'there', 'anywhere']) }}" value="here" />
+    <fbs desc="Table Desc">
+        Click <fbs:enum enum-range="{{ json_encode(['here', 'there', 'anywhere']) }}" value="here" />
         to see
-        <fbt:plural name="count" showCount="yes" count="2">thing</fbt:plural>.
-    </fbt>
+        <fbs:plural name="count" showCount="yes" count="2">thing</fbs:plural>.
+    </fbs>
 </p>
 
 @endFbtTransform

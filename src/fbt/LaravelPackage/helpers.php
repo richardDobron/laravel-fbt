@@ -41,5 +41,5 @@ function fbt($text, string $desc, array $options = [])
  */
 function fbs($text, string $desc, array $options = [])
 {
-    return \fbt\LaravelPackage\fbs($text, $desc, $options);
+    return new \fbt\LaravelPackage\fbs($text, $desc, $options);
 }

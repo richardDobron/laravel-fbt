@@ -64,12 +64,12 @@ use fbt\Runtime\Gender;
 
 class User extends Authenticatable implements IntlViewerContextInterface
 {
-    public function getLocale(): ?string
+    public function getLocale(): string
     {
         return $this->locale;
     }
 
-    public static function getGender(): int
+    public function getGender(): int
     {
         if ($this->gender === 'male') {
             return IntlVariations::GENDER_MALE;
