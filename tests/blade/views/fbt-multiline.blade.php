@@ -7,3 +7,5 @@
  'It\'s simple',
  ['project' => "foo"]
 )
+
+@section('fbt', fbt('A simple string', 'It\'s simple'))
