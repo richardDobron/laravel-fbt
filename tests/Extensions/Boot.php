@@ -3,8 +3,9 @@
 namespace tests\Extensions;
 
 use PHPUnit\Runner\AfterLastTestHook;
+use PHPUnit\Runner\TestHook;
 
-class Boot implements AfterLastTestHook
+class Boot implements TestHook, AfterLastTestHook
 {
     public function executeAfterLastTest(): void
     {
