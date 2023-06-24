@@ -4,6 +4,21 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.2.0 - 2023-06-24
+### Added
+- Config `prettyPrint` (default `true`) to pretty print source strings in a JSON file.
+
+### Changed
+- Update `fbt` dependency to 4.2.1.
+
+### Removed
+- Option `--views` for command `fbt:collect-fbts` is removed. Now all blade files are collected by default.
+- Option `--pretty` for command `fbt:phrases` is removed. Pretty printing is now controlled by the `prettyPrint` config option.
+
+### Fixed
+- Fbt collection from blade files (now collects all fbt functions, not just `@fbt` directives)
+- function `fbs()` is now working properly
+
 ## v3.1.0 - 2023-04-19
 ### Changed
 - Update `fbt` dependency to 3.1.0.
