@@ -22,6 +22,11 @@ return [
     'logger' => false,
 
     /*
+     * Pretty print source strings in a JSON file.
+     */
+    'prettyPrint' => true,
+
+    /*
      * Collect fbt instances from the source and store them in a database.
      */
     'collectFbt' => true,
