@@ -8,4 +8,4 @@
  ['project' => "foo"]
 )
 
-@section('fbt', fbt('A simple string', 'It\'s simple'))
+@section('fbt', fbt('Pick an emoji…', 'placeholder text for emoji picker'))

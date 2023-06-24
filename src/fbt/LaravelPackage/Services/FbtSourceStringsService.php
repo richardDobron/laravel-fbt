@@ -19,7 +19,7 @@ class FbtSourceStringsService
      * @throws \fbt\Exceptions\FbtException
      * @throws \Exception
      */
-    public function exportPhrases(bool $pretty = false)
+    public function exportPhrases()
     {
         $fbtDir = FbtConfig::get('path') . '/';
 
@@ -27,8 +27,8 @@ class FbtSourceStringsService
             mkdir($fbtDir, 0755, true);
         }
 
-        $flags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
-        if ($pretty) {
+        $flags = 0;
+        if (FbtConfig::get('prettyPrint')) {
             $flags |= JSON_PRETTY_PRINT;
         }
 

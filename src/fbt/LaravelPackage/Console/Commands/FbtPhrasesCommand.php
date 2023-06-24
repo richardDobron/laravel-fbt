@@ -12,7 +12,7 @@ class FbtPhrasesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fbt:phrases {--pretty : Pretty print the translation output}';
+    protected $signature = 'fbt:phrases';
 
     /**
      * The console command description.
@@ -24,7 +24,7 @@ class FbtPhrasesCommand extends Command
     public function handle(FbtSourceStringsService $fbtSourceStringsService): int
     {
         try {
-            $fbtSourceStringsService->exportPhrases($this->option('pretty'));
+            $fbtSourceStringsService->exportPhrases();
         } catch (\Throwable $e) {
             $this->error($e->getMessage());
 
