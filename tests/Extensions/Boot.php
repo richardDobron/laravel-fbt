@@ -2,7 +2,6 @@
 
 namespace tests\Extensions;
 
-use fbt\FbtConfig;
 use PHPUnit\Runner\AfterLastTestHook;
 
 class Boot implements AfterLastTestHook
