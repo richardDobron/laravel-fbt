@@ -4,6 +4,11 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.2.1 - 2023-06-28
+### Changed
+- Update `fbt` dependency to 3.2.2.
+- Option --translations-input has been renamed to --translation-input for command `fbt:generate-translations`
+
 ## v3.2.0 - 2023-06-24
 ### Added
 - Config `prettyPrint` (default `true`) to pretty print source strings in a JSON file.
