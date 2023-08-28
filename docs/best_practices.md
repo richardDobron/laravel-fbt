@@ -1,4 +1,8 @@
-# Platform Internationalization Best Practices
+---
+id: best_practices
+title: Platform Internationalization Best Practices
+sidebar_label: Best Practices
+---
 
 Here are some rough guidelines and lessons learned by the internationalization team at Facebook. These are in no specific order of importance.
 

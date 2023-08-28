@@ -1,4 +1,8 @@
-# Pronouns
+---
+id: pronouns
+title: Pronouns
+sidebar_label: Pronouns
+---
 
 `fbt:pronoun` and `fbt::pronoun` both take a required `FbtConstants::PRONOUN_USAGE` enum and a [`Gender::GENDER_CONST`](https://github.com/richardDobron/fbt/blob/main/src/fbt/Runtime/Gender.php) enum:
 ```php
@@ -32,7 +36,8 @@ class Gender
 }
 ```
 
-**<span style="color:red">⚠️ NOTE: This is not the same gender as used in `fbt:param`, `fbt:name`, or `subject`!</span>**<br/>
+**⚠️ NOTE: This is not the same gender as used in `fbt:param`, `fbt:name`, or `subject`!**
+
 The `IntlVariations` used in those cases only has `GENDER_MALE`, `GENDER_FEMALE`, and `GENDER_UNKNOWN`.
 
 
@@ -40,9 +45,9 @@ The `IntlVariations` used in those cases only has `GENDER_MALE`, `GENDER_FEMALE`
 
 ```
 <fbt desc="pronoun example">
-  <fbt:param name="name">{{$ent->getName()}}</fbt:param>
+  <fbt:param name="name">{{ $ent->getName() }}</fbt:param>
   shared
-  <fbt:pronoun type="possessive" gender="{{$ent->getPronounGender()}}" />
+  <fbt:pronoun type="possessive" gender="{{ $ent->getPronounGender() }}" />
   photo with you.
 </fbt>
 ```

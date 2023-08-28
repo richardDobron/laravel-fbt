@@ -1,4 +1,8 @@
-# Parameters and interpolation
+---
+id: params
+title: Parameters and interpolation
+sidebar_label: Parameters (interpolation)
+---
 
 **⚠️ NOTE: Content of `fbt:param` and `fbt:name` will not be escaped!**
 

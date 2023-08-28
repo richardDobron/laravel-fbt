@@ -4,4 +4,8 @@
 /tests/*.json
 composer.lock
 .php-cs-fixer.cache
-.phpunit.result.cache
+
+# documentation build artifacts
+website/build/
+website/node_modules
+website/.docusaurus

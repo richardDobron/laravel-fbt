@@ -1,4 +1,8 @@
-# Inline Translating
+---
+id: inline_translating
+title: Inline Translating
+sidebar_label: Inline Translating
+---
 
 This framework supports inline translation mode, which means that you can translate anywhere in the application so that you can view strings you are translating in context.
 If you right-click on the underlined string, the translation dialog appears and you will be able to vote for the available translations or submit a new one.

@@ -1,4 +1,8 @@
-# Extracting FBTs
+---
+id: collection
+title: Extracting FBTs
+sidebar_label: Extracting translatable texts
+---
 
 We provide `collect-fbts` as a utility for collecting strings.
 

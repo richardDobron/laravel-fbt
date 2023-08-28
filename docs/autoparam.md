@@ -1,3 +1,8 @@
+---
+id: autoparam
+title: Auto-parameterization
+sidebar_label: Auto-parameterization
+---
 
 # What is Auto Parameterization?
 
