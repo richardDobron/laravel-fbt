@@ -12,9 +12,9 @@ module.exports = {
   title: "FBT for Laravel",
   tagline: "A PHP Internationalization Framework for Laravel Application.",
   url: "https://richarddobron.github.io",
-  baseUrl: "/fbt/",
+  baseUrl: "/laravel-fbt/",
   favicon: "img/favicon_blue.png",
-  projectName: "fbt",
+  projectName: "laravel-fbt",
   organizationName: "richardDobron",
   scripts: ["https://buttons.github.io/buttons.js"],
   customFields: {
