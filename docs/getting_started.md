@@ -200,14 +200,14 @@ Blade > Directives* by adding a new one with the following properties:
 
 * Name: fbt
 * Has parameters: yes
-* Prefix: <?php echo \fbt(
-* Suffix: ); ?>
+* Prefix: `<?php echo \fbt(`
+* Suffix: `); ?>`
 
 
 * Name: fbs
 * Has parameters: yes
-* Prefix: <?php echo \fbs(
-* Suffix: ); ?>
+* Prefix: `<?php echo \fbs(`
+* Suffix: `); ?>`
 
 
 * Name: fbtTransform
