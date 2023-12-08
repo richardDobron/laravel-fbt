@@ -27,7 +27,7 @@ class CollectFbtsService extends \fbt\Services\CollectFbtsService
 
         FbtConfig::set('path', $path);
 
-        foreach (rsearch($src, '/.blade.php$/') as $path) {
+        foreach (rsearch($src, "/.blade.php$/") as $path) {
             $this->collectFromOneFile($this->renderBladeView($path), $path);
         }
 

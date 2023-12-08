@@ -40,7 +40,7 @@ class FbtServiceProvider extends ServiceProvider
             \dirname(__DIR__, 3) . '/migrations/' => database_path('migrations'),
         ], 'fbt-migrations');
 
-        if ($this->app->runningInConsole()) {
+        if ($this->app->runningInConsole() && $this->app->config->get('fbt.driver') === 'eloquent') {
             $this->loadMigrationsFrom(\dirname(__DIR__, 3) . '/migrations/');
         }
 
