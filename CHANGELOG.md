@@ -4,6 +4,11 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.2.2 - 2023-12-09
+### Changed
+- Update `fbt` dependency to 3.2.3.
+- Load migrations only if config `fbt.driver` is `eloquent`
+
 ## v3.2.1 - 2023-06-28
 ### Changed
 - Update `fbt` dependency to 3.2.2.
