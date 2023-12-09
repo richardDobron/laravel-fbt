@@ -5,5 +5,5 @@
 <strong>STRONG</strong> text
 <strong>STRONG</strong> text
 
-&lt;strong&gt;STRONG&lt;/strong&gt; text
+<strong>STRONG</strong> text
 <strong>STRONG</strong> text
