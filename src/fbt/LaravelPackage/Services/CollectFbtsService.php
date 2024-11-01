@@ -7,7 +7,6 @@ use fbt\FbtConfig;
 use function fbt\rsearch;
 
 use fbt\Runtime\Shared\FbtHooks;
-
 use Illuminate\Support\Facades\Blade;
 
 class CollectFbtsService extends \fbt\Services\CollectFbtsService

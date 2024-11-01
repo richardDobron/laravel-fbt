@@ -8,7 +8,6 @@ use fbt\FbtConfig;
 use function fbt\invariant;
 
 use fbt\LaravelPackage\Console\Commands\FbtCollectCommand;
-
 use fbt\LaravelPackage\Console\Commands\FbtGenerateTranslationsCommand;
 use fbt\LaravelPackage\Console\Commands\FbtPhrasesCommand;
 use fbt\LaravelPackage\Console\Commands\FbtTranslateCommand;
