@@ -1,0 +1,46 @@
+{
+    "phrases": [
+        {
+            "hashToText": {
+                "5484cc530aff8e1f4e3ea8dc28775f7e": "simple text"
+            },
+            "desc": "desc",
+            "project": "website app",
+            "author": "richard",
+            "type": "text",
+            "jsfbt": "simple text"
+        }
+    ],
+    "translationGroups": [
+        {
+            "fb-locale": "cs_CZ",
+            "translations": {
+                "5484cc530aff8e1f4e3ea8dc28775f7e": {
+                    "translations": [
+                        {
+                            "translation": "",
+                            "variations": []
+                        }
+                    ],
+                    "tokens": [],
+                    "types": []
+                }
+            }
+        },
+        {
+            "fb-locale": "sk_SK",
+            "translations": {
+                "5484cc530aff8e1f4e3ea8dc28775f7e": {
+                    "translations": [
+                        {
+                            "translation": "",
+                            "variations": []
+                        }
+                    ],
+                    "tokens": [],
+                    "types": []
+                }
+            }
+        }
+    ]
+}

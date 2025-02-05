@@ -41,6 +41,25 @@ class fbtCommandsTest extends \tests\TestCase
         unlink($file2);
     }
 
+    public function testTranslationsGenerator()
+    {
+        $fbtDir = FbtConfig::get('path') . '/';
+        $dataDir = __DIR__ . '/../translations/data/';
+        $translationInput = $dataDir . 'translation_input.json';
+        $tmpFile = tempnam(sys_get_temp_dir(), "fbt_");
+
+        copy($translationInput, $tmpFile);
+
+        $this->artisan('fbt:generate-translations', [
+            '--src' => $fbtDir . '.source_strings.json',
+            '--translation-input' => $tmpFile,
+        ]);
+
+        $this->assertMatchesSnapshot(file_get_contents($tmpFile));
+
+        unlink($tmpFile);
+    }
+
     public function testFbtCollection()
     {
         $fbtDir = FbtConfig::get('path') . '/';
