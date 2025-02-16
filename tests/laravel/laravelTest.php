@@ -11,6 +11,8 @@ class laravelTest extends \tests\TestCase
 {
     public function testLaravelLocaleListener()
     {
+        $this->assertEquals('sk_SK', $this->app->getLocale());
+
         $this->app->setLocale('uk_UA');
 
         $this->assertEquals('sk_SK', FbtHooks::locale());
@@ -27,6 +29,6 @@ class laravelTest extends \tests\TestCase
 
         $this->assertEquals('de_DE', FbtHooks::locale());
 
-        // todo: $this->assertEquals('de_DE', $this->app->getLocale());
+        $this->assertEquals('de_DE', $this->app->getLocale());
     }
 }
