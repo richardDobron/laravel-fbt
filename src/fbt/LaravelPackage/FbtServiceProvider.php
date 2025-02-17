@@ -251,6 +251,14 @@ class FbtServiceProvider extends ServiceProvider
             'fbt'
         );
 
+        FbtConfig::listen('locale', function (string $locale) {
+            if (config('fbt.locale') === 'laravel' && $locale !== 'laravel') {
+                if ($this->app->getLocale() !== $locale) {
+                    $this->app->setLocale($locale);
+                }
+            }
+        });
+
         FbtConfig::setMultiple(config('fbt'));
 
         if (config('fbt.locale') === 'laravel') {
@@ -259,7 +267,9 @@ class FbtServiceProvider extends ServiceProvider
 
         $this->app['events']->listen(\Illuminate\Foundation\Events\LocaleUpdated::class, function () {
             if (config('fbt.locale') === 'laravel') {
-                FbtConfig::set('locale', $this->app->getLocale());
+                if (FbtConfig::get('locale') !== $this->app->getLocale()) {
+                    FbtConfig::set('locale', $this->app->getLocale());
+                }
             }
         });
 
