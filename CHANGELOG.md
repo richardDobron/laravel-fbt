@@ -4,6 +4,12 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v3.3.2 - 2025-02-16
+### Changed
+- Update `fbt` dependency to 3.3.2.
+### Added
+- FbtConfig listener for locale change
+
 ## v3.3.1 - 2025-01-12
 ### Changed
 - Update `fbt` dependency to 3.3.1.
