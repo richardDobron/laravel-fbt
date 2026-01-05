@@ -14,38 +14,56 @@ FBT is an internationalization framework for Laravel Application designed to be 
 <img src="docs/enum.png" alt="FBT enum"/>
 <img src="docs/pronouns.png" alt="FBT pronouns"/>
 
-## Requirements
+## 📖 Requirements
 * Laravel 5.5 or higher
 * [Composer](https://getcomposer.org) is required for installation
 
-## Installing
+## 📦 Installing
 
 ```shell
 $ composer require richarddobron/laravel-fbt
 ```
 
-## Getting started
+## ✨ Features
+- [x] Parameters and interpolation
+- [x] Implicit parameters
+- [x] Auto-parameterization
+- [x] Plurals
+- [x] Enumerations
+- [x] Pronouns
+- [x] Number formatting
+- [x] Phrase extracting
+- [x] Inline translating
+
+## 🚀 Getting started
 
 [Integrating into your app](docs/getting_started.md)
 
-## Version Guidance
+## 📑 Version Guidance
 
 | Version | Released   | Status | Repo             | Laravel Version | PHP Version |
 |---------|------------|--------|------------------|-----------------|-------------|
 | 3.x     | 2022-02-21 | Latest | [v3][fbt-3-repo] | ^5.5            | ^7.0        |
 
-## How FBT works
+## ⚙️ How FBT works
+
 FBT works by transforming your `<fbt>` and `fbt(...)` constructs via
 [Simple HTML DOM Parser][simplehtmldom].  This library serve to extract strings from source and
 lookup translated payloads generated while execution.  FBT creates tables
 of all possible variations for the given fbt phrase and accesses this
 at runtime.
 
-## Full documentation
+## 📕 Full documentation
+
 https://github.com/richarddobron/laravel-fbt/tree/main/docs
 
-## License
-FBT is MIT licensed, as found in the [LICENSE](LICENSE) file.
+## 🤝 Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 [fbt-3-repo]: https://github.com/richarddobron/laravel-fbt
 [link-facebook-fbt]: https://github.com/facebook/fbt
