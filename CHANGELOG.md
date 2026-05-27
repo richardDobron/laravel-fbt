@@ -4,6 +4,10 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## v4.3.5 - 2026-05-27
+### Added
+- Support for Laravel 13
+
 ## v4.3.4 - 2026-05-27
 ### Added
 - Support for Laravel 12
