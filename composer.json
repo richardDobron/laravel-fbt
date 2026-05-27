@@ -50,5 +50,10 @@
     "scripts-descriptions": {
         "test": "Run all tests."
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "config": {
+        "audit": {
+            "block-insecure": false
+        }
+    }
 }
