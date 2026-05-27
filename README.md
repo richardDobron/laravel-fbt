@@ -49,9 +49,9 @@ $ composer require richarddobron/laravel-fbt
 ## ⚙️ How FBT works
 
 FBT works by transforming your `<fbt>` and `fbt(...)` constructs via
-[Simple HTML DOM Parser][simplehtmldom].  This library serve to extract strings from source and
-lookup translated payloads generated while execution.  FBT creates tables
-of all possible variations for the given fbt phrase and accesses this
+[DOM Forge][dom-forge].  It serves to extract strings from source and
+lookup translated payloads generated during execution.  FBT creates tables
+of all possible variations for each fbt phrase and accesses them
 at runtime.
 
 ## 📕 Full documentation
@@ -69,4 +69,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 [fbt-3-repo]: https://github.com/richarddobron/laravel-fbt/tree/3.x
 [fbt-4-repo]: https://github.com/richarddobron/laravel-fbt
 [link-facebook-fbt]: https://github.com/facebook/fbt
-[simplehtmldom]: https://sourceforge.net/projects/simplehtmldom/files/simplehtmldom/1.9.1/
+[dom-forge]: https://github.com/richardDobron/dom-forge
