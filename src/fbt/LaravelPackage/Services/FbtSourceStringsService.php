@@ -4,7 +4,6 @@ namespace fbt\LaravelPackage\Services;
 
 use fbt\FbtConfig;
 use fbt\LaravelPackage\Models\Phrase;
-
 use fbt\Transform\FbtTransform\Utils\TextPackager;
 
 class FbtSourceStringsService
