@@ -16,7 +16,7 @@ class CollectFbtsService extends \fbt\Services\CollectFbtsService
      * @throws \Throwable
      * @throws \fbt\Exceptions\FbtParserException
      */
-    public function collectFromBladeFiles(string $path, string $src)
+    public function collectFromBladeFiles(string $path, string $src): void
     {
         $fbtDir = $path . '/';
 

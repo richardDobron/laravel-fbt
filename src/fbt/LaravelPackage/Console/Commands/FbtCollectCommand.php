@@ -29,7 +29,7 @@ class FbtCollectCommand extends Command
         if (! $this->option('path')) {
             $this->error('--path option is required.');
 
-            return 1;
+            return self::FAILURE;
         }
 
         try {
@@ -51,9 +51,9 @@ class FbtCollectCommand extends Command
         } catch (\Throwable $e) {
             $this->error($e->getMessage());
 
-            return 1;
+            return self::FAILURE;
         }
 
-        return 0;
+        return self::SUCCESS;
     }
 }

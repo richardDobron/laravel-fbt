@@ -24,7 +24,7 @@ class FbtGenerateTranslationsCommand extends Command
      */
     protected $description = 'Generate missing translation hashes from collected source strings.';
 
-    public function handle(TranslationsGeneratorService $translationsGeneratorService)
+    public function handle(TranslationsGeneratorService $translationsGeneratorService): int
     {
         $path = FbtConfig::get('path');
 
@@ -37,9 +37,9 @@ class FbtGenerateTranslationsCommand extends Command
         } catch (\Throwable $e) {
             $this->error($e->getMessage());
 
-            return 1;
+            return self::FAILURE;
         }
 
-        return 0;
+        return self::SUCCESS;
     }
 }

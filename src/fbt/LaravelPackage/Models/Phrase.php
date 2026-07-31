@@ -23,7 +23,7 @@ use Illuminate\Support\Collection;
  * @property Phrase $parent
  * @property Phrase $children
  * @property Source $source
- * @property Token[]|Collection $tokens
+ * @property Collection<Token> $tokens
  */
 class Phrase extends Model
 {

@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
  * @property int $id
  * @property array $raw_source
  *
- * @property Phrase[]|Collection $phrases
+ * @property Collection<Phrase> $phrases
  */
 class Source extends Model
 {

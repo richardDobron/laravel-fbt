@@ -78,7 +78,7 @@ class FbtServiceProvider extends ServiceProvider
     {
         $directives = require __DIR__ . '/directives.php';
 
-        collect($directives)->each(function ($item, $key) {
+        collect($directives)->each(function (callable $item, string $key) {
             Blade::directive($key, $item);
         });
     }

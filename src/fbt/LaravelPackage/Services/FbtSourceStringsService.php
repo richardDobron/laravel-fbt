@@ -5,8 +5,6 @@ namespace fbt\LaravelPackage\Services;
 use fbt\FbtConfig;
 use fbt\LaravelPackage\Models\Phrase;
 
-use function fbt\LaravelPackage\searchSubArray;
-
 use fbt\Transform\FbtTransform\Utils\TextPackager;
 
 class FbtSourceStringsService
@@ -19,7 +17,7 @@ class FbtSourceStringsService
      * @throws \fbt\Exceptions\FbtException
      * @throws \Exception
      */
-    public function exportPhrases()
+    public function exportPhrases(): void
     {
         $fbtDir = FbtConfig::get('path') . '/';
 
@@ -51,7 +49,9 @@ class FbtSourceStringsService
             ];
 
             if ($phrase->parent_id !== null) {
-                $this->childToParent[count($this->phrases) - 1] = searchSubArray($phrase->parent_id, $parentIds);
+                $this->childToParent[count($this->phrases) - 1] = collect($parentIds)->search(function (array $subArray) use ($phrase) {
+                    return in_array($phrase->parent_id, $subArray, true);
+                });
             }
 
             $sourceIds[] = $phrase->source->id;
