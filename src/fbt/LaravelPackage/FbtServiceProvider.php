@@ -9,6 +9,7 @@ use function fbt\invariant;
 
 use fbt\LaravelPackage\Console\Commands\FbtCollectCommand;
 use fbt\LaravelPackage\Console\Commands\FbtGenerateTranslationsCommand;
+use fbt\LaravelPackage\Console\Commands\FbtMigrateV5Command;
 use fbt\LaravelPackage\Console\Commands\FbtPhrasesCommand;
 use fbt\LaravelPackage\Console\Commands\FbtTranslateCommand;
 use fbt\LaravelPackage\Models\Phrase;
@@ -47,6 +48,7 @@ class FbtServiceProvider extends ServiceProvider
             FbtTranslateCommand::class,
             FbtCollectCommand::class,
             FbtPhrasesCommand::class,
+            FbtMigrateV5Command::class,
         ]);
 
         $this->app->terminating(function () {

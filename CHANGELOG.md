@@ -6,6 +6,8 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 
 ## Unreleased
 See [UPGRADE.md](UPGRADE.md).
+### Added
+- `fbt:migrate-v5` command (hash encoding of stored phrases or translation files, translations to redo)
 ### Changed
 - Update `fbt` dependency to 5.0 (`eloquent` driver stores and exports phrases in the fbt 5 format)
 ### Fixed

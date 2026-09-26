@@ -111,11 +111,15 @@ php artisan fbt:translate
 ```
 Read more about [translating](translating.md).
 
-4. This command migrates translation files from v4 to v5.
+4. This command migrates phrases stored in the database from v4 to v5 (`eloquent` driver).
 ```shell
-php ./vendor/bin/fbt migrate-v5 --translations="./path/to/translations/*.json" --src=./path/to/fbt/.source_strings.json
+php artisan fbt:migrate-v5 --digest=base64
 ```
-**⚠️ NOTE: It converts the hashes to `base64`, set `md5_digest` to `base64` first.** Read more about [upgrading to fbt 5](https://github.com/richardDobron/laravel-fbt/blob/main/UPGRADE.md).
+Translation files (`json` driver) are migrated by:
+```shell
+php artisan fbt:migrate-v5 --digest=base64 --translations="./storage/fbt/translations/*.json"
+```
+**⚠️ NOTE: Set `md5_digest` to `base64` too.** Read more about [upgrading to fbt 5](https://github.com/richardDobron/laravel-fbt/blob/main/UPGRADE.md).
 
 ## 📘 API
 
