@@ -37,9 +37,9 @@ class FbtGenerateTranslationsCommand extends Command
         } catch (\Throwable $e) {
             $this->error($e->getMessage());
 
-            return self::FAILURE;
+            return 1;
         }
 
-        return self::SUCCESS;
+        return 0;
     }
 }

@@ -72,6 +72,6 @@ class FbtSourceStringsService
             throw new \Exception("File $file is not writable.");
         }
 
-        file_put_contents($file, json_encode($phrasesOutput, $flags));
+        file_put_contents($file, json_encode($phrasesOutput, $flags), LOCK_EX);
     }
 }

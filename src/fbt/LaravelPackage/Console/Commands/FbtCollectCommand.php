@@ -29,31 +29,26 @@ class FbtCollectCommand extends Command
         if (! $this->option('path')) {
             $this->error('--path option is required.');
 
-            return self::FAILURE;
+            return 1;
         }
 
         try {
-            $paths = preg_split('/\s*,\s*/', $this->option('path'));
+            $paths = preg_split('/\s*,\s*/', trim($this->option('path')));
 
-            foreach ($paths as $path) {
+            foreach ($paths as $index => $path) {
                 $collectFbtsService->collectFromFiles(
                     FbtConfig::get('path'),
                     $path,
-                    (string)$this->option('fbt-common-path'),
-                    $this->option('clean-cache') === 'true'
-                );
-
-                $collectFbtsService->collectFromBladeFiles(
-                    FbtConfig::get('path'),
-                    $path
+                    $this->option('fbt-common-path') ?: null,
+                    $index === 0 && $this->option('clean-cache') === 'true'
                 );
             }
         } catch (\Throwable $e) {
             $this->error($e->getMessage());
 
-            return self::FAILURE;
+            return 1;
         }
 
-        return self::SUCCESS;
+        return 0;
     }
 }

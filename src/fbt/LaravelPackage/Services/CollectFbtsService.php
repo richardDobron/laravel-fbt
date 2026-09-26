@@ -2,41 +2,26 @@
 
 namespace fbt\LaravelPackage\Services;
 
-use fbt\FbtConfig;
-
-use function fbt\rsearch;
-
-use fbt\Runtime\Shared\FbtHooks;
 use Illuminate\Support\Facades\Blade;
 
 class CollectFbtsService extends \fbt\Services\CollectFbtsService
 {
     /**
-     * @throws \fbt\Exceptions\FbtInvalidConfigurationException
-     * @throws \Throwable
-     * @throws \fbt\Exceptions\FbtParserException
+     * Blade views are collected from their compiled code.
      */
-    public function collectFromBladeFiles(string $path, string $src): void
+    protected function collectFromOneFile(string $source, string $path): bool
     {
-        $fbtDir = $path . '/';
-
-        if (! is_dir($fbtDir)) {
-            mkdir($fbtDir, 0755, true);
+        if (substr($path, -10) === '.blade.php') {
+            $source = $this->renderBladeView($source);
         }
 
-        FbtConfig::set('path', $path);
-
-        foreach (rsearch($src, "/.blade.php$/") as $path) {
-            $this->collectFromOneFile($this->renderBladeView($path), $path);
-        }
-
-        FbtHooks::storePhrases();
+        return parent::collectFromOneFile($source, $path);
     }
 
-    protected function renderBladeView(string $path): string
+    protected function renderBladeView(string $source): string
     {
         try {
-            return Blade::compileString(file_get_contents($path));
+            return Blade::compileString($source);
         } catch (\Exception $e) {
             return '';
         }

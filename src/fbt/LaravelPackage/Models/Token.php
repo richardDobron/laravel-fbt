@@ -11,8 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property null|int $translation_id
  * @property null|int $phrase_id
  * @property string $token
- * @property string $type
- * @property null|bool $singular
+ * @property int $type
  * @property Carbon $created_at
  *
  * @property Phrase $phrase
@@ -27,8 +26,7 @@ class Token extends Model
         'translation_id' => 'int',
         'phrase_id' => 'int',
         'token' => 'string',
-        'type' => 'string',
-        'singular' => 'bool',
+        'type' => 'int',
     ];
 
     public const UPDATED_AT = null;
