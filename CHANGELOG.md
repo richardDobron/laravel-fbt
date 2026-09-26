@@ -11,6 +11,12 @@ See [UPGRADE.md](UPGRADE.md).
 ### Fixed
 - Phrases were stored and exported on every request, also when no fbt was collected (`eloquent` driver)
 - Inner strings were linked to a wrong parent (`eloquent` driver)
+- `fbt:collect-fbts` with several paths kept only the strings of the last path (`json` driver), Blade views were collected twice
+- Artisan commands failed on Laravel < 8 (`self::SUCCESS` / `self::FAILURE`)
+- Viewer context and locale of a previous Octane request or queued job were kept
+- `project` of phrases was limited to 25 characters (new migration)
+- `.source_strings.json` is written under an exclusive lock (`eloquent` driver)
+- `Token` model casts
 
 ## v4.3.6 - 2025-06-14
 ### Changed

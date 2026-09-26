@@ -71,8 +71,8 @@
                 }
             },
             "filepath": "tests/blade/views/fbt-html.blade.php",
-            "line_beg": 1,
-            "line_end": 42,
+            "line_beg": 2,
+            "line_end": 35,
             "author": "richard",
             "project": "website app",
             "jsfbt": {
@@ -91,8 +91,8 @@
                 }
             },
             "filepath": "tests/blade/views/fbt-html.blade.php",
-            "line_beg": 1,
-            "line_end": 42,
+            "line_beg": 2,
+            "line_end": 35,
             "author": "richard",
             "project": "website app",
             "jsfbt": {
@@ -111,8 +111,8 @@
                 }
             },
             "filepath": "tests/blade/views/fbt-html.blade.php",
-            "line_beg": 1,
-            "line_end": 42,
+            "line_beg": 2,
+            "line_end": 35,
             "author": "richard",
             "project": "website app",
             "jsfbt": {
@@ -131,8 +131,8 @@
                 }
             },
             "filepath": "tests/blade/views/fbt-html.blade.php",
-            "line_beg": 1,
-            "line_end": 42,
+            "line_beg": 2,
+            "line_end": 35,
             "author": "richard",
             "project": "website app",
             "jsfbt": {
@@ -141,53 +141,6 @@
                     "text": "Forgot your password?"
                 },
                 "m": []
-            }
-        },
-        {
-            "hashToLeaf": {
-                "5484cc530aff8e1f4e3ea8dc28775f7e": {
-                    "text": "simple text",
-                    "desc": "desc"
-                }
-            },
-            "filepath": "tests/commands/fbtCommandsTest.php",
-            "line_beg": 21,
-            "line_end": 21,
-            "author": "richard",
-            "project": "website app",
-            "jsfbt": {
-                "t": {
-                    "desc": "desc",
-                    "text": "simple text"
-                },
-                "m": []
-            }
-        },
-        {
-            "hashToLeaf": {
-                "1bcf6999e651288a267aa813f560f520": {
-                    "text": "You just friended {name}",
-                    "desc": "names"
-                }
-            },
-            "filepath": "tests/commands/fbtCommandsTest.php",
-            "line_beg": 68,
-            "line_end": 68,
-            "author": "richard",
-            "project": "website app",
-            "jsfbt": {
-                "t": {
-                    "*": {
-                        "desc": "names",
-                        "text": "You just friended {name}"
-                    }
-                },
-                "m": [
-                    {
-                        "token": "name",
-                        "type": 1
-                    }
-                ]
             }
         },
         {
@@ -295,11 +248,58 @@
                 },
                 "m": []
             }
+        },
+        {
+            "hashToLeaf": {
+                "5484cc530aff8e1f4e3ea8dc28775f7e": {
+                    "text": "simple text",
+                    "desc": "desc"
+                }
+            },
+            "filepath": "tests/commands/fbtCommandsTest.php",
+            "line_beg": 21,
+            "line_end": 21,
+            "author": "richard",
+            "project": "website app",
+            "jsfbt": {
+                "t": {
+                    "desc": "desc",
+                    "text": "simple text"
+                },
+                "m": []
+            }
+        },
+        {
+            "hashToLeaf": {
+                "1bcf6999e651288a267aa813f560f520": {
+                    "text": "You just friended {name}",
+                    "desc": "names"
+                }
+            },
+            "filepath": "tests/commands/fbtCommandsTest.php",
+            "line_beg": 68,
+            "line_end": 68,
+            "author": "richard",
+            "project": "website app",
+            "jsfbt": {
+                "t": {
+                    "*": {
+                        "desc": "names",
+                        "text": "You just friended {name}"
+                    }
+                },
+                "m": [
+                    {
+                        "token": "name",
+                        "type": 1
+                    }
+                ]
+            }
         }
     ],
     "childParentMappings": {
         "2": 1,
-        "10": 9,
-        "11": 10
+        "8": 7,
+        "9": 8
     }
 }

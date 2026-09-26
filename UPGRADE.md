@@ -1,7 +1,8 @@
 # Upgrading to fbt 5
 
 This release requires [fbt 5](https://github.com/richardDobron/fbt/blob/main/UPGRADE-5.0.md), which collects
-phrases in a new format. No database migration is needed.
+phrases in a new format. With the `eloquent` driver, run `php artisan migrate` (it widens the `project` column
+of phrases to 100 characters).
 
 The `md5_digest` configuration of this package stays `hex`, so the hashes of stored phrases and the keys of
 translation files stay valid. Don't run `./vendor/bin/fbt migrate-v5`: it converts the keys to `base64`.

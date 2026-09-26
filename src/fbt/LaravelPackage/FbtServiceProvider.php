@@ -18,7 +18,6 @@ use fbt\LaravelPackage\Models\Translation;
 use fbt\LaravelPackage\Services\FbtSourceStringsService;
 use fbt\Lib\IntlViewerContextInterface;
 use fbt\Runtime\Shared\FbtHooks;
-use fbt\Transform\FbtTransform\FbtConstants;
 use fbt\Transform\FbtTransform\FbtTransform;
 use fbt\Transform\FbtTransform\Translate\FbtSiteMetaEntry;
 use fbt\Transform\FbtTransform\Translate\IntlVariations;
@@ -67,6 +66,24 @@ class FbtServiceProvider extends ServiceProvider
                 }
             }
         );
+
+        // The configuration is static, so the viewer (user) of a previous request or job
+        // must not be kept by long-running workers (Octane, queue workers)
+        Event::listen('Laravel\Octane\Events\RequestReceived', function ($event = null) {
+            $this->resetViewer($event->sandbox ?? $this->app);
+        });
+        Event::listen(\Illuminate\Queue\Events\JobProcessing::class, function () {
+            $this->resetViewer($this->app);
+        });
+    }
+
+    public function resetViewer($app): void
+    {
+        FbtConfig::set('viewerContext', $app['config']->get('fbt.viewerContext'));
+
+        $locale = $app['config']->get('fbt.locale');
+        FbtConfig::set('locale', $locale === 'laravel' ? $app->getLocale() : $locale);
+        FbtHooks::locale(null);
     }
 
     /**

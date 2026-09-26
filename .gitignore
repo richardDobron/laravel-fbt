@@ -1,6 +1,7 @@
 /.idea
 /vendor
 /.phpunit.cache
+/.phpunit.result.cache
 /tests/*.json
 composer.lock
 .php-cs-fixer.cache
