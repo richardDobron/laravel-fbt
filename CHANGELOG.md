@@ -4,6 +4,14 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## Unreleased
+See [UPGRADE.md](UPGRADE.md).
+### Changed
+- Update `fbt` dependency to 5.0 (`eloquent` driver stores and exports phrases in the fbt 5 format)
+### Fixed
+- Phrases were stored and exported on every request, also when no fbt was collected (`eloquent` driver)
+- Inner strings were linked to a wrong parent (`eloquent` driver)
+
 ## v4.3.6 - 2025-06-14
 ### Changed
 - Update `fbt` dependency to 4.3.4.

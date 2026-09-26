@@ -55,6 +55,9 @@ return [
     /*
      * Hash digest for md5 hash.
      * hex / base64
+     *
+     * Hashes stored in the database (eloquent driver) and translations are keyed by it,
+     * see `php artisan fbt:migrate-v5` to change it.
      */
     'md5_digest' => 'hex',
 

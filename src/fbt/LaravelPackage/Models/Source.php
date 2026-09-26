@@ -23,6 +23,11 @@ class Source extends Model
         'raw_source' => 'array',
     ];
 
+    public function isLegacy(): bool
+    {
+        return isset($this->raw_source['type']) || ! isset($this->raw_source['jsfbt']['t']);
+    }
+
     //--Relationships---------------------------------------------------------------------------------------------------
 
     public function phrases(): HasMany

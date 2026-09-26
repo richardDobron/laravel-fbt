@@ -51,7 +51,7 @@ class FbtServiceProvider extends ServiceProvider
         ]);
 
         $this->app->terminating(function () {
-            FbtHooks::storePhrases();
+            FbtHooks::storeCollectedPhrases();
             FbtHooks::storeImpressions();
         });
 
@@ -153,30 +153,27 @@ class FbtServiceProvider extends ServiceProvider
             FbtHooks::register('storePhrases', function () {
                 DB::beginTransaction();
                 $sourceStrings = FbtTransform::toArray();
+                FbtHooks::$sourceHashes = [];
 
                 try {
-                    $parentIds = [];
+                    $phraseIds = [];
                     foreach ($sourceStrings['phrases'] as $index => $phrase) {
-                        $parent = $sourceStrings['childParentMappings'][$index] ?? null;
+                        $parentIndex = $sourceStrings['childParentMappings'][$index] ?? null;
+                        $parentId = $parentIndex !== null ? ($phraseIds[$parentIndex] ?? null) : null;
 
-                        foreach ($phrase['hashToText'] as $hash => $text) {
+                        foreach ($phrase['hashToLeaf'] as $hash => $leaf) {
                             if (isset(FbtHooks::$storedHashes[$hash])) {
                                 continue;
                             }
                             FbtHooks::$storedHashes[$hash] = true;
 
-                            $phrase['hash'] = $hash;
-                            $phrase['text'] = $text;
+                            $phraseId = FbtHooks::savePhrase([
+                                'hash' => $hash,
+                                'text' => $leaf['text'],
+                                'desc' => $leaf['desc'],
+                            ] + $phrase, $parentId);
 
-                            if ($parent !== null) {
-                                $_parentIds = array_unique($parentIds);
-                                $parentIds = [];
-                                foreach ($_parentIds as $parentId) {
-                                    $parentIds[] = FbtHooks::savePhrase($phrase, $parentId);
-                                }
-                            } else {
-                                $parentIds = [FbtHooks::savePhrase($phrase)];
-                            }
+                            $phraseIds[$index] = $phraseIds[$index] ?? $phraseId;
                         }
                     }
                 } catch (\Throwable $e) {
@@ -200,40 +197,42 @@ class FbtServiceProvider extends ServiceProvider
                     'hash' => $phrase['hash'],
                 ]);
 
+                if ($model->exists && $model->source && ! $model->source->isLegacy()) {
+                    return $model->id;
+                }
+
+                $phraseSource = array_diff_key($phrase, array_flip(['hashToLeaf', 'hash', 'text', 'desc']));
+
+                $hash = md5(json_encode($phraseSource));
+                if (! isset(FbtHooks::$sourceHashes[$hash])) {
+                    $source = new Source();
+                    $source->raw_source = $phraseSource;
+                    $source->save();
+                    FbtHooks::$sourceHashes[$hash] = $source->id;
+                }
+                $model->source_id = FbtHooks::$sourceHashes[$hash];
+
                 if (! $model->exists) {
                     $model->parent_id = $parentId;
                     $model->text = $phrase['text'];
                     $model->description = $phrase['desc'];
-                    $model->project = $phrase['project'];
-                    $model->author = $phrase['author'];
+                    $model->project = $phrase['project'] ?? '';
+                    $model->author = $phrase['author'] ?? null;
                     $model->created_at = Carbon::now();
-                    if ($model->save() && $phrase['type'] === FbtConstants::FBT_TYPE['TABLE']) {
-                        foreach ($phrase['jsfbt']['m'] as $metadata) {
-                            if (isset($metadata['token'])) {
-                                $token = new Token();
-                                $token->token = $metadata['token'];
-                                $token->type = $metadata['type'];
-                                $token->created_at = Carbon::now();
-                                $model->tokens()->save($token);
-                            }
+                    $model->save();
+
+                    foreach ($phrase['jsfbt']['m'] as $metadata) {
+                        if (isset($metadata['token'])) {
+                            $token = new Token();
+                            $token->token = $metadata['token'];
+                            $token->type = $metadata['type'];
+                            $token->created_at = Carbon::now();
+                            $model->tokens()->save($token);
                         }
                     }
-
-                    $phraseSource = [
-                        'type' => $phrase['type'],
-                        'jsfbt' => $phrase['jsfbt'],
-                    ];
-
-                    $hash = md5(json_encode($phraseSource) . $phrase['desc']);
-                    if (! isset(FbtHooks::$sourceHashes[$hash])) {
-                        $source = new Source();
-                        $source->raw_source = $phraseSource;
-                        $source->save();
-                        FbtHooks::$sourceHashes[$hash] = $source->id;
-                    }
-                    $model->source_id = FbtHooks::$sourceHashes[$hash];
-                    $model->save();
                 }
+
+                $model->save();
 
                 return $model->id;
             });

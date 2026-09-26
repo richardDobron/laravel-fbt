@@ -5,6 +5,7 @@ namespace fbt\LaravelPackage\Services;
 use fbt\FbtConfig;
 use fbt\LaravelPackage\Models\Phrase;
 use fbt\Transform\FbtTransform\Utils\TextPackager;
+use fbt\Util\JsJson;
 
 class FbtSourceStringsService
 {
@@ -24,43 +25,43 @@ class FbtSourceStringsService
             mkdir($fbtDir, 0755, true);
         }
 
-        $flags = 0;
+        $flags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
         if (FbtConfig::get('prettyPrint')) {
             $flags |= JSON_PRETTY_PRINT;
         }
 
-        $phrases = Phrase::with('source')->get();
+        $phrases = Phrase::with('source')->orderBy('id')->get();
         $textPackager = new TextPackager(FbtConfig::get('hash_module'));
-        $parentIds = $phrases->groupBy('source_id')->pluck('*.id')->toArray();
-        $sourceIds = [];
+        $sourceIndexes = [];
 
         foreach ($phrases as $phrase) {
-            if (in_array($phrase->source->id, $sourceIds)) {
+            if (isset($sourceIndexes[$phrase->source_id]) || ! $phrase->source || $phrase->source->isLegacy()) {
                 continue;
             }
 
-            $this->phrases[] = [
-                'desc' => $phrase->description,
-                'project' => $phrase->project,
-                'author' => $phrase->author,
-                'type' => $phrase->source->raw_source['type'],
-                'jsfbt' => $phrase->source->raw_source['jsfbt'],
-            ];
-
-            if ($phrase->parent_id !== null) {
-                $this->childToParent[count($this->phrases) - 1] = collect($parentIds)->search(function (array $subArray) use ($phrase) {
-                    return in_array($phrase->parent_id, $subArray, true);
-                });
-            }
-
-            $sourceIds[] = $phrase->source->id;
+            $sourceIndexes[$phrase->source_id] = count($this->phrases);
+            $this->phrases[] = $phrase->source->raw_source;
         }
 
-        $this->phrases = $textPackager->pack($this->phrases);
+        $phraseSourceIds = $phrases->pluck('source_id', 'id');
+        foreach ($phrases as $phrase) {
+            $child = $sourceIndexes[$phrase->source_id] ?? null;
+            $parent = $phrase->parent_id !== null ? ($sourceIndexes[$phraseSourceIds[$phrase->parent_id] ?? 0] ?? null) : null;
+
+            if ($child !== null && $parent !== null && $child !== $parent) {
+                $this->childToParent[$child] = $parent;
+            }
+        }
+
+        $this->phrases = array_map(function (array $phrase) {
+            $phrase['jsfbt']['t'] = JsJson::toJsObject($phrase['jsfbt']['t']);
+
+            return $phrase;
+        }, $textPackager->pack($this->phrases));
 
         $phrasesOutput = [
             'phrases' => $this->phrases,
-            'childParentMappings' => $this->childToParent,
+            'childParentMappings' => JsJson::toJsObject($this->childToParent),
         ];
 
         $file = $fbtDir . '.source_strings.json';

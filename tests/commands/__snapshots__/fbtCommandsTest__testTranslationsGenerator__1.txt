@@ -1,14 +1,24 @@
 {
     "phrases": [
         {
-            "hashToText": {
-                "5484cc530aff8e1f4e3ea8dc28775f7e": "simple text"
+            "hashToLeaf": {
+                "5484cc530aff8e1f4e3ea8dc28775f7e": {
+                    "text": "simple text",
+                    "desc": "desc"
+                }
             },
-            "desc": "desc",
-            "project": "website app",
+            "filepath": "tests/commands/fbtCommandsTest.php",
+            "line_beg": 21,
+            "line_end": 21,
             "author": "richard",
-            "type": "text",
-            "jsfbt": "simple text"
+            "project": "website app",
+            "jsfbt": {
+                "t": {
+                    "desc": "desc",
+                    "text": "simple text"
+                },
+                "m": []
+            }
         }
     ],
     "translationGroups": [

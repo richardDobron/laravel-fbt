@@ -2,6 +2,13 @@
   <img src="icon.png" height="150" width="150" alt="FBT"/>
 </h1>
 
+# FBT for Laravel
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/richardDobron/laravel-fbt.svg?style=flat-square)](https://packagist.org/packages/richardDobron/laravel-fbt)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+![Test Status](https://github.com/richardDobron/laravel-fbt/actions/workflows/run-tests.yml/badge.svg)
+[![Total Downloads](https://img.shields.io/packagist/dt/richardDobron/laravel-fbt.svg?style=flat-square)](https://packagist.org/packages/richardDobron/laravel-fbt)
+
 FBT is an internationalization framework for Laravel Application designed to be not just **powerful** and **flexible**, but also **simple** and **intuitive**.  It helps with the following:
 * Organizing your source text for translation
 * Composing grammatically correct translatable UI
@@ -44,19 +51,22 @@ $ composer require richarddobron/laravel-fbt
 | Version | Released   | Status     | Repo             | Laravel Version                                                      | PHP Version |
 |---------|------------|------------|------------------|----------------------------------------------------------------------|-------------|
 | 3.x     | 2022-02-21 | Maintained | [v3][fbt-3-repo] | ^5.5                                                                 | ^7.0        |
-| 4.x     | 2022-04-09 | Latest     | [v4][fbt-4-repo] | ^5.6\|^5.7\|^5.8\|^6.0\|^7.0\|^8.0\|^9.0\|^10.0\|^11.0\|^12.0\|^13.0 | ^7.2\|^8.0  |
+| 4.x     | 2022-04-09 | Maintained | [v4][fbt-4-repo] | ^5.6\|^5.7\|^5.8\|^6.0\|^7.0\|^8.0\|^9.0\|^10.0\|^11.0\|^12.0\|^13.0 | ^7.2\|^8.0  |
+| 5.x     | Unreleased | Latest     | [v5][fbt-5-repo] | ^5.6\|^5.7\|^5.8\|^6.0\|^7.0\|^8.0\|^9.0\|^10.0\|^11.0\|^12.0\|^13.0 | ^7.2\|^8.0  |
 
 ## ⚙️ How FBT works
+Like Facebook's fbt, FBT creates tables of all possible variations for each fbt phrase and
+accesses them at runtime. `fbt(...)` callsites are compiled from their constructs (e.g. `fbt::param()`),
+and `<fbt>` constructs are parsed via [DOM Forge][dom-forge]. Each callsite is compiled once, its strings
+are extracted for translation, and the translated payloads are looked up during execution.
 
-FBT works by transforming your `<fbt>` and `fbt(...)` constructs via
-[DOM Forge][dom-forge].  It serves to extract strings from source and
-lookup translated payloads generated during execution.  FBT creates tables
-of all possible variations for each fbt phrase and accesses them
-at runtime.
+## ⬆️ Upgrading
+
+See [UPGRADE.md](UPGRADE.md) for upgrading to fbt 5.
 
 ## 📕 Full documentation
 
-https://github.com/richarddobron/laravel-fbt/tree/main/docs
+- [API Reference](https://github.com/richarddobron/laravel-fbt/tree/main/docs)
 
 ## 🤝 Contributing
 
@@ -67,6 +77,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 [fbt-3-repo]: https://github.com/richarddobron/laravel-fbt/tree/3.x
-[fbt-4-repo]: https://github.com/richarddobron/laravel-fbt
+[fbt-4-repo]: https://github.com/richarddobron/laravel-fbt/tree/4.x
+[fbt-5-repo]: https://github.com/richarddobron/laravel-fbt
 [link-facebook-fbt]: https://github.com/facebook/fbt
 [dom-forge]: https://github.com/richardDobron/dom-forge
