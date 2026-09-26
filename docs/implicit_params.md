@@ -30,7 +30,7 @@ E.g
 <fbt
   subject="{{ $subjectGender }}" 
   desc="{{ 'There is an implicit actor here. ' .
-        "Like: '{name} translated your string.'" }}>
+        "Like: '{name} translated your string.'" }}">
   translated your string.
 </fbt>
 ```

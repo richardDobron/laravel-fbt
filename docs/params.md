@@ -77,7 +77,7 @@ second token.
 fbt(
   fbt::name(
     'name',
-     '<a href="#">{{$name}}</a>',
+     '<a href="#">' . $name . '</a>',
      $gender
    ) .
   ' shared a link.  Tell ' . fbt::sameParam('name') . ' you liked it.',

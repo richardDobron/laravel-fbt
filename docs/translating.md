@@ -4,7 +4,7 @@ title: Translating
 sidebar_label: Translating FBTs
 ---
 
-There are two ways to translate phrases:
+There are three ways to translate phrases:
 1. Manually translate generated JSON file by `php artisan fbt:generate-translations` and then use the `php artisan fbt:translate` command.
 2. Manually add translations to the database and then use the `php artisan fbt:translate` command.
 3. Use the app editor [Swiftyper Translations](https://github.com/swiftyper-sk/laravel-fbt-sync).
@@ -25,7 +25,11 @@ php artisan fbt:generate-translations --translations=./storage/fbt/translations/
 | --translation-input     | `FbtConfig::get('path')`/translation_input.json | Path to translation input file                                                                              |
 | --translations=`[path]` | *none*                                          | The translation files containing translations.<br />E.g. `--translations=./storage/fbt/translations/*.json` |
 
-## Artisan command to convert provided translations to jenkins:
+Translation files have to be named by their locale (e.g. `de_DE.json`), other files are skipped.
+Each file contains a translation group (`{"fb-locale": "de_DE", "translations": {...}}`), so it can be passed to `fbt:translate --translations`.
+Without `--translations`, the missing translations are written to the `--translation-input` file.
+
+## Command to convert provided translations to jenkins:
 ```shell
 php artisan fbt:translate
 # or
@@ -34,12 +38,35 @@ php artisan fbt:translate --stdin < translation_input.json
 php artisan fbt:translate --translations=./storage/fbt/translations/*.json
 ```
 
+The translations are written to `translatedFbts.json` in the `path` of `/config/fbt.php`.
+
 ### Options:
 | name                             | default | description                                                                                                                                                                |
 |----------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | --pretty                         | no      | Pretty print the translation output                                                                                                                                        |
-| --translations=`[path]`          | *none*  | The translation files containing translations.  If not specified, the translations are retrieved from the database.<br/>E.g. `--translations=/path/to/translations/*.json` |
+| --translations=`[path]`          | *none*  | The translation files containing translations. If not specified, the translations are retrieved from the database.<br/>E.g. `--translations=/path/to/translations/*.json` |
 | --stdin < translation_input.json | *none*  | Instead of reading translation files and source file separately, read monolithic JSON file from STDIN                                                                      |
+
+### Writing to the standard output
+
+With the CLI of fbt (`./vendor/bin/fbt`), the translations can be written as JSON to the standard output instead of
+`translatedFbts.json`:
+
+```shell
+php ./vendor/bin/fbt translate --source-strings=./path/to/fbt/.source_strings.json --translations=./path/to/translations/*.json --jenkins
+php ./vendor/bin/fbt translate --stdin --jenkins -o=./path/to/output/ < translation_input.json
+```
+
+| name                         | default                | description                                                                                                  |
+|------------------------------|------------------------|--------------------------------------------------------------------------------------------------------------|
+| --source-strings=`[path]`    | `.source_strings.json` | The file containing source strings                                                                           |
+| --translations=`[paths]`     | *none*                 | The translation files (comma separated or globs), a translation group per file                              |
+| --stdin                      | no                     | Read a monolithic JSON payload (`{phrases, translationGroups}`) from STDIN                                   |
+| --jenkins                    | no                     | Output the translations by locale and callsite hash (`{"cs_CZ": {"<hash>": <payload>}}`), like `translatedFbts.json`. Without it, the output is a list of translation groups (`[{"fb-locale": ..., "translatedPhrases": [...]}]`) |
+| --fbt-hash-module=`[path]`   | *none*                 | Like `--jenkins`, with the hashes computed by a PHP file returning a callable                                |
+| --output-dir=`[dir]`, -o=`[dir]` | *none*             | Write one `<locale>.json` file per locale into the directory instead of the standard output                 |
+| --strict                     | no                     | Stop on missing translations                                                                                 |
+| --pretty                     | no                     | Pretty print the translation output                                                                          |
 
 ## JSON schema:
 
@@ -49,13 +76,13 @@ is a good reference on the "schema" used for the translations.
 
 ```json
 {
-  "phrases": [
-    "hashToText": {
-      <text_hash>: <text>,
+  "phrases": [{
+    "hashToLeaf": {
+      <text_hash>: {"text": <text>, "desc": <description>},
       ...
     },
-    "jsfbt": string|{t:<table>, m:<metadata>}
-  ],
+    "jsfbt": {"t": <leaf or table>, "m": <metadata>}
+  }],
   ...
   "translationGroups": [{
     "fb-locale": "xx_XX",
@@ -77,27 +104,14 @@ is a good reference on the "schema" used for the translations.
 
 The `<text_hash>` and `<translation_hash>` correspond in the above example.
 That is `translations[<hash>]` is the translation entry for
-`phrases.hashToText[<hash>]`.
+`phrases.hashToLeaf[<hash>]`.
+
+Translations of strings with inner strings (e.g. `{=Learn more}`) keep these tokens as they are.
 
 Here `tokens`, `types` and `variations` are all associative arrays.  That is, in
 the above example, `types[i]` represents the variation type (or mask) of
 `tokens[i]` and `variations[i]` is the variation value of `token[i]` for the
 given translation entry.
-
-## Database schema:
-
-![Database Schema](scheme.png)
-
-## Example translation:
-### fbt_phrases
-
-![fbt_phrases table](phrases.png)
-
-### translations
-If you use tokens, they must be defined in same order and the following form: `token_name`%`token_type`.
-
-![translations table](translations.png)
-...
 
 ## Variation types
 Variation types can be one of

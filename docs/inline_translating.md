@@ -9,22 +9,28 @@ If you right-click on the underlined string, the translation dialog appears and 
 
 ## Preview
 
-![Demo of FBT inline translating](https://raw.githubusercontent.com/richardDobron/laravel-fbt/main/docs/inline_translating.gif)
+![Demo of FBT inline translating](https://raw.githubusercontent.com/richardDobron/fbt/main/docs/inline_translating.gif)
 
 ## Installing
 
-For installation, please follow these [instructions](https://github.com/swiftyper-sk/fbt-inline-translations#-installing).
+For installation, please follow these [instructions](https://github.com/swiftyper-sk/fbt-inline-translations#non-react-usage).
 
 ## How it works?
 ```php
-// to turn on inline translation
-FbtHooks::inlineMode('TRANSLATE');
+// to turn on inline translations (or 'APPROVE', 'REPORT')
+FbtHooks::inlineMode('TRANSLATION');
 
 // to turn off inline translations
 FbtHooks::inlineMode('NO_INLINE');
 ```
 
+The inlined strings are wrapped in `<em class="intlInlineMode_...">` elements, which are styled by
+[`intlInlineMode.css`](https://github.com/richardDobron/fbt/blob/main/src/fbt/Runtime/intlInlineMode.css).
+
 ## Excluded translations
+Strings created with `fbs()` / `<fbs>` are never inlined, since they are meant to be used as plain text
+(e.g. in HTML attributes).
+
 If you need to turn off inline mode for specific phrases, you can use option `reporting`:
 
 ```php

@@ -4,28 +4,27 @@ title: Pronouns
 sidebar_label: Pronouns
 ---
 
-`fbt:pronoun` and `fbt::pronoun` both take a required `FbtConstants::PRONOUN_USAGE` enum and a [`Gender::GENDER_CONST`](https://github.com/richardDobron/fbt/blob/main/src/fbt/Runtime/Gender.php) enum:
+`fbt:pronoun` and `fbt::pronoun` both take a required usage (`FbtConstants::VALID_PRONOUN_USAGES`) and a [`Gender::GENDER_CONST`](https://github.com/richardDobron/fbt/blob/main/src/fbt/Runtime/Gender.php) enum:
 ```php
 class FbtConstants
 {
-    public const PRONOUN_USAGE = [
-        "OBJECT" => 0,
-        "POSSESSIVE" => 1,
-        "REFLEXIVE" => 2,
-        "SUBJECT" => 3
+    const VALID_PRONOUN_USAGES = [
+        "object" => 0,
+        "possessive" => 1,
+        "reflexive" => 2,
+        "subject" => 3,
     ];
 }
 
 class Gender
 {
-    public const GENDER_CONST = [
+    const GENDER_CONST = [
         'NOT_A_PERSON' => 0,
         'FEMALE_SINGULAR' => 1,
         'MALE_SINGULAR' => 2,
         'FEMALE_SINGULAR_GUESS' => 3,
         'MALE_SINGULAR_GUESS' => 4,
-        'MIXED_SINGULAR' => 5,
-        'MIXED_PLURAL' => 5,
+        'MIXED_UNKNOWN' => 5,
         'NEUTER_SINGULAR' => 6,
         'UNKNOWN_SINGULAR' => 7,
         'FEMALE_PLURAL' => 8,
@@ -37,7 +36,6 @@ class Gender
 ```
 
 **⚠️ NOTE: This is not the same gender as used in `fbt:param`, `fbt:name`, or `subject`!**
-
 The `IntlVariations` used in those cases only has `GENDER_MALE`, `GENDER_FEMALE`, and `GENDER_UNKNOWN`.
 
 
@@ -55,27 +53,26 @@ The `IntlVariations` used in those cases only has `GENDER_MALE`, `GENDER_FEMALE`
 ### Optional attributes
 * **capitalize** `bool`: Whether to capitalize the pronoun in the source string.
 * **human** `bool`: Whether to elide the NOT_A_PERSON option in the text variations generated.
+* **key** `string`: Pronouns with the same `key` share the same gender, so that only the consistent
+  combinations of their variations are generated for translation (*Facebook's fbt detects that the
+  same variable is used*).
 
 The example above generates:
-```
+```json
 {
-  "hashToText": {
-    "23fa7e4d6a4686bb6ff609c00726cf33": "{name} shared her photo with you.",
-    "dd86ffccd845f2767c691f8d48f69e25": "{name} shared his photo with you.",
-    "2584ed80718ca4138cd95adcf492de53": "{name} shared their photo with you."
+  "hashToLeaf": {
+    "JYTtgHGMpBOM2Vrc9JLeUw==": {"text": "{name} shared their photo with you.", "desc": "pronoun example"},
+    "I/p+TWpGhrtv9gnABybPMw==": {"text": "{name} shared her photo with you.", "desc": "pronoun example"},
+    "3Yb/zNhF8nZ8aR+NSPaeJQ==": {"text": "{name} shared his photo with you.", "desc": "pronoun example"}
   },
-  ...,
-  "type": "table",
-  "desc": "pronoun example",
+  "project": "website app",
   "jsfbt": {
     "t": {
-      "1": "{name} shared her photo with you.",
-      "2": "{name} shared his photo with you.",
-      "*": "{name} shared their photo with you."
+      "1": {"desc": "pronoun example", "text": "{name} shared her photo with you."},
+      "2": {"desc": "pronoun example", "text": "{name} shared his photo with you."},
+      "*": {"desc": "pronoun example", "text": "{name} shared their photo with you."}
     },
-    "m": [
-      null
-    ]
+    "m": [null]
   }
 }
 ```
@@ -97,8 +94,7 @@ Below is the table of possible values for their various types.
      2 MALE_SINGULAR         he      his        himself    him
      3 FEMALE_SINGULAR_GUESS she     her        herself    her
      4 MALE_SINGULAR_GUESS   he      his        himself    him
-     5 MIXED_SINGULAR        they    their      themselves them
-     5 MIXED_PLURAL          they    their      themselves them
+     5 MIXED_UNKNOWN         they    their      themselves them
      6 NEUTER_SINGULAR       they    their      themself   them
      7 UNKNOWN_SINGULAR      they    their      themself   them
      8 FEMALE_PLURAL         they    their      themselves them
