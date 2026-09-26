@@ -4,7 +4,7 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## Unreleased
+## v5.0.0 - 2026-09-26
 See [UPGRADE.md](UPGRADE.md).
 ### Added
 - `fbt:migrate-v5` command (hash encoding of stored phrases or translation files, translations to redo)
@@ -19,6 +19,10 @@ See [UPGRADE.md](UPGRADE.md).
 - `project` of phrases was limited to 25 characters (new migration)
 - `.source_strings.json` is written under an exclusive lock (`eloquent` driver)
 - `Token` model casts
+
+## v4.3.0 - 2026-09-25
+### Changed
+- Update `fbt` dependency to 4.4.0.
 
 ## v4.3.6 - 2025-06-14
 ### Changed

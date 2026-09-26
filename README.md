@@ -48,11 +48,11 @@ $ composer require richarddobron/laravel-fbt
 
 ## 📑 Version Guidance
 
-| Version | Released   | Status     | Repo             | Laravel Version                                                      | PHP Version |
-|---------|------------|------------|------------------|----------------------------------------------------------------------|-------------|
-| 3.x     | 2022-02-21 | Maintained | [v3][fbt-3-repo] | ^5.5                                                                 | ^7.0        |
-| 4.x     | 2022-04-09 | Maintained | [v4][fbt-4-repo] | ^5.6\|^5.7\|^5.8\|^6.0\|^7.0\|^8.0\|^9.0\|^10.0\|^11.0\|^12.0\|^13.0 | ^7.2\|^8.0  |
-| 5.x     | Unreleased | Latest     | [v5][fbt-5-repo] | ^5.6\|^5.7\|^5.8\|^6.0\|^7.0\|^8.0\|^9.0\|^10.0\|^11.0\|^12.0\|^13.0 | ^7.2\|^8.0  |
+| Version | Released   | Status      | Repo             | Laravel Version                                                      | PHP Version |
+|---------|------------|-------------|------------------|----------------------------------------------------------------------|-------------|
+| 3.x     | 2022-02-21 | Unsupported | [v3][fbt-3-repo] | ^5.5                                                                 | ^7.0        |
+| 4.x     | 2022-04-09 | Maintained  | [v4][fbt-4-repo] | ^5.6\|^5.7\|^5.8\|^6.0\|^7.0\|^8.0\|^9.0\|^10.0\|^11.0\|^12.0\|^13.0 | ^7.2\|^8.0  |
+| 5.x     | 2026-09-26 | Latest      | [v5][fbt-5-repo] | ^5.6\|^5.7\|^5.8\|^6.0\|^7.0\|^8.0\|^9.0\|^10.0\|^11.0\|^12.0\|^13.0 | ^7.2\|^8.0  |
 
 ## ⚙️ How FBT works
 Like Facebook's fbt, FBT creates tables of all possible variations for each fbt phrase and
