@@ -4,7 +4,7 @@ title: Upgrading to fbt 5
 sidebar_label: Upgrading to fbt 5
 ---
 
-This release requires [fbt 5](https://github.com/richardDobron/fbt/blob/main/UPGRADE-5.0.md), which collects
+This release requires [fbt 5](https://richarddobron.github.io/fbt/docs/upgrading), which collects
 phrases in a new format. With the `eloquent` driver, run `php artisan migrate` (it widens the `project` column
 of phrases to 100 characters).
 
