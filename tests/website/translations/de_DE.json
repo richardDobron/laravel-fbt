@@ -1,0 +1,95 @@
+{
+    "fb-locale": "de_DE",
+    "translations": {
+        "a1cc4e7e258e80fa692c23e788a8ab1e": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Du hast 1 ungelesene Nachricht.",
+                    "variations": []
+                }
+            ]
+        },
+        "91212020e34c2afc0ffcd73f080e111d": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Du hast {count} ungelesene Nachrichten.",
+                    "variations": []
+                }
+            ]
+        },
+        "2751c478db3b8b3cc12190ea777f0ec8": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} hat ein Foto mit dir geteilt.",
+                    "variations": []
+                }
+            ]
+        },
+        "a793b282e121e0e8591dd6f566110fc4": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Deine Bestellung wurde versandt.",
+                    "variations": []
+                }
+            ]
+        },
+        "1ea709e2e6f1296b9ae9885d7d20a623": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Deine Bestellung wurde zugestellt.",
+                    "variations": []
+                }
+            ]
+        },
+        "8d7d3388554e86cff7379d6681ffe8a1": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Deine Bestellung wurde storniert.",
+                    "variations": []
+                }
+            ]
+        },
+        "bb6a4be42d5c17e6cf37698db7f0e74a": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} hat ihr Profil aktualisiert.",
+                    "variations": []
+                }
+            ]
+        },
+        "7434aedc8d558af61a6ab222064f1d1d": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} hat sein Profil aktualisiert.",
+                    "variations": []
+                }
+            ]
+        },
+        "01db673842502ee0737f97d8abd69da9": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} hat das eigene Profil aktualisiert.",
+                    "variations": []
+                }
+            ]
+        }
+    }
+}

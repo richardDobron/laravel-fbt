@@ -1,76 +1,257 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @noflow
- * @emails oncall+internationalization
- */
-
-import React from "react";
-import classnames from "classnames";
+import React, { useState } from "react";
+import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import CodeBlock from "@theme/CodeBlock";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import agentPrompt from "../agentPrompt";
+import exampleData from "../examples.json";
 import styles from "./styles.module.css";
-import CodeBlock from "../components/CodeBlock";
-import Showcase from "../components/Showcase";
+
+const examples = [
+  {
+    id: "plural",
+    label: "Plurals",
+    code: `<fbt desc="Unread messages in the inbox">
+  You have
+  <fbt:plural count="{{ $count }}" name="count"
+              showCount="yes" many="unread messages">
+    unread message
+  </fbt:plural>.
+</fbt>`,
+    note: (
+      <>
+        English and German have two forms. Slovak has three (1, 2–4, 5+), Russian uses the form of 1 also for 21,
+        Turkish keeps the noun singular after a number, and Japanese has no plural at all. Translators just fill in
+        the forms of their language.
+      </>
+    ),
+  },
+  {
+    id: "name",
+    label: "Names & gender",
+    code: `<fbt desc="Notification about a shared photo">
+  <fbt:name name="name" gender="{{ $user->gender }}">
+    {{ $user->name }}
+  </fbt:name>
+  shared a photo with you.
+</fbt>`,
+    note: (
+      <>
+        In Slovak and Russian, the verb changes with the gender of the person (zdieľal / zdieľala, поделился /
+        поделилась). English, German, Turkish and Japanese keep one sentence.
+      </>
+    ),
+  },
+  {
+    id: "enum",
+    label: "Enums",
+    code: `<fbt desc="Status of an order">
+  Your order has been
+  <fbt:enum enum-range="{{ json_encode([
+    'shipped' => 'shipped',
+    'delivered' => 'delivered',
+    'cancelled' => 'cancelled',
+  ]) }}" value="{{ $order->status }}" />.
+</fbt>`,
+    note: (
+      <>
+        Every value becomes a whole sentence for translators, so they can change the word order and the grammar,
+        not just a single word.
+      </>
+    ),
+  },
+  {
+    id: "pronoun",
+    label: "Pronouns",
+    code: `<fbt desc="Notification about an updated profile">
+  <fbt:param name="name">{{ $user->name }}</fbt:param>
+  updated
+  <fbt:pronoun type="possessive" human="true"
+               gender="{{ $user->pronounGender }}" />
+  profile.
+</fbt>`,
+    note: (
+      <>
+        English and German pick his / her / their. Slovak and Russian use the same reflexive pronoun for everyone
+        (svoj, свой), but the verb changes instead. Turkish and Japanese have no gendered pronouns at all.
+      </>
+    ),
+  },
+];
 
 const features = [
   {
-    title: <>Inlined translatable text</>,
+    icon: "✍️",
+    title: "Inline translations",
     description: (
       <>
-        Compose translatable text inline with your source:
-        <CodeBlock
-          code={`<button>
-  @fbt('Hello, World!', 'Canonical intro text')
-</button>`}
-        />
+        Write texts right where they're used, in Blade with <code>@fbt</code> or in PHP with <code>fbt()</code>. No
+        translation keys, no language files to keep in sync.
       </>
-    )
+    ),
   },
   {
-    title: <>Seamless text collection</>,
+    icon: "🧠",
+    title: "Grammar done right",
     description: (
       <>
-        Collect your translatable source texts with ease:
-        <CodeBlock
-          code={`{
-  "hashToText":{
-    "ni7kanCF2RfGZAS9mDOToQ==":
-    "Hello, World!"
-  },
-  ...,
-  "desc": "Canonical intro text"
-}`}
-        />
+        Plurals, genders and names are variations translators fill in. Every language gets correct sentences, even
+        with three plural forms or gendered verbs.
       </>
-    )
+    ),
   },
   {
-    title: <>Integrated translations</>,
+    icon: "🏢",
+    title: "Proven at Facebook",
     description: (
       <>
-        Easily pull translations into your app
-        <CodeBlock code={`<button>Hello, Byd!</button>`} />
+        A port of <a href="https://github.com/facebook/fbt">fbt</a>, the framework Facebook built to translate its
+        apps. Same source strings, same translation formats.
       </>
-    )
-  }
+    ),
+  },
+  {
+    icon: "⚡",
+    title: "Easy setup",
+    description: (
+      <>
+        One Composer package, artisan commands to collect and translate texts. Store translations in JSON files or
+        in the database.
+      </>
+    ),
+  },
+  {
+    icon: "🎯",
+    title: "Translate in context",
+    description: (
+      <>
+        <Link to="/docs/inline_translating">Inline translating</Link> lets translators edit texts right on the
+        page, where they see how they're used.
+      </>
+    ),
+  },
+  {
+    icon: "🧩",
+    title: "Built for Laravel",
+    description: (
+      <>
+        Blade directives, the locale of the application, the signed-in user as viewer context, and clean state for
+        Octane requests and queued jobs.
+      </>
+    ),
+  },
 ];
 
-const Features = () =>
-  features && features.length ? (
-    <section className={styles.features}>
+function Hero() {
+  const { siteConfig } = useDocusaurusContext();
+
+  return (
+    <header className={styles.hero}>
+      <div className={clsx("container", styles.heroContainer)}>
+        <div className={styles.heroText}>
+          <span className={styles.badge}>Internationalization framework for Laravel</span>
+          <h1 className={styles.heroTitle}>{siteConfig.title}</h1>
+          <p className={styles.heroTagline}>
+            Translate whole sentences, with plurals, genders and names, so that your Laravel app reads naturally in
+            every language.
+          </p>
+          <div className={styles.buttons}>
+            <Link className="button button--primary button--lg" to="/docs/getting_started">
+              Get started
+            </Link>
+            <Link className="button button--outline button--secondary button--lg" to="https://github.com/richardDobron/laravel-fbt">
+              GitHub
+            </Link>
+          </div>
+          <div className={styles.install}>
+            <CodeBlock language="bash">composer require richarddobron/laravel-fbt</CodeBlock>
+          </div>
+        </div>
+        <img className={styles.heroImage} src={useBaseUrl("img/fbt.png")} alt="" />
+      </div>
+    </header>
+  );
+}
+
+function InAction() {
+  const [locale, setLocale] = useState("sk_SK");
+
+  return (
+    <section className={styles.section}>
       <div className="container">
-        <div className="row">
-          {features.map(({ title, description }, idx) => (
-            <div
-              key={idx}
-              className={classnames("col col--4", styles.featureBlock)}
+        <h2 className={styles.sectionTitle}>FBT in action</h2>
+        <p className={styles.sectionLead}>
+          Write the text once in English. Translators get whole sentences with the variations their language needs,
+          and FBT picks the right one at runtime.
+        </p>
+        <div className={styles.localeSwitch} role="group" aria-label="Language">
+          {Object.entries(exampleData.locales).map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              lang={id.replace("_", "-")}
+              className={clsx(styles.localeButton, locale === id && styles.localeButtonActive)}
+              aria-pressed={locale === id}
+              onClick={() => setLocale(id)}
             >
+              {label}
+            </button>
+          ))}
+        </div>
+        <Tabs className={styles.exampleTabs}>
+          {examples.map(({ id, label, code, note }) => (
+            <TabItem key={id} value={id} label={label}>
+              <div className="row">
+                <div className="col col--6">
+                  <CodeBlock language="html" title="Blade">
+                    {code}
+                  </CodeBlock>
+                </div>
+                <div className="col col--6">
+                  <div className={styles.outputCard}>
+                    <div className={styles.outputHeader}>Output · {exampleData.locales[locale]}</div>
+                    <ul className={styles.outputList} lang={locale.replace("_", "-")}>
+                      {exampleData.examples[id].map((example) => (
+                        <li key={example.label}>
+                          <div className={styles.outputMeta}>{example.label}</div>
+                          <div className={styles.outputText}>{example.outputs[locale]}</div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className={styles.exampleNote}>{note}</p>
+                </div>
+              </div>
+            </TabItem>
+          ))}
+        </Tabs>
+        <p className={styles.exampleFootnote}>
+          HTML fbts are rendered in <code>@fbtTransform</code> … <code>@endFbtTransform</code>. The outputs above are
+          rendered by laravel-fbt.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Features() {
+  return (
+    <section className={clsx(styles.section, styles.sectionAlt)}>
+      <div className="container">
+        <h2 className={styles.sectionTitle}>Why FBT?</h2>
+        <p className={styles.sectionLead}>
+          Getting grammatically correct translations in dynamic applications is hard. Let FBT do the hard work.
+        </p>
+        <div className={styles.featureGrid}>
+          {features.map(({ icon, title, description }) => (
+            <div key={title} className={styles.featureCard}>
+              <div className={styles.featureIcon} aria-hidden="true">
+                {icon}
+              </div>
               <h3>{title}</h3>
               <p>{description}</p>
             </div>
@@ -78,88 +259,90 @@ const Features = () =>
         </div>
       </div>
     </section>
-  ) : null;
+  );
+}
 
-const Description = () => (
-  <section className={styles.description}>
-    <div className={classnames("row", styles.row)}>
-      <div className={classnames("col", styles.column)}>
-        <h2>Why FBT?</h2>
-        <div>
-          FBT is a framework for internationalizing user interfaces in
-          PHP. It is designed to be not only powerful and flexible, but
-          also simple and intuitive. Getting grammatically correct translated
-          texts in dynamic applications is hard. Let FBT do the hard work for
-          you.
-        </div>
-      </div>
-      <div className={classnames("col", styles.column)}>
-        <div className="splash_image">
-          <img
-            className={styles.descriptionImage}
-            src={useBaseUrl("img/fbt.png")}
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-);
+function GetStarted() {
+  return (
+    <section className={styles.section}>
+      <div className={clsx("container", styles.narrow)}>
+        <h2 className={styles.sectionTitle}>Get started in minutes</h2>
+        <p className={styles.sectionLead}>Keep translations in JSON files, or in the database.</p>
+        <Tabs groupId="driver">
+          <TabItem value="json" label="JSON files" default>
+            <CodeBlock language="bash">{`composer require richarddobron/laravel-fbt
+php artisan vendor:publish --tag=fbt-config
 
-const Index = () => {
-  const { siteConfig = {} } = useDocusaurusContext();
+# Wrap texts with @fbt(...), then collect them
+php artisan fbt:collect-fbts
+php artisan fbt:generate-translations
+
+# Translate storage/fbt/translation_input.json, then
+php artisan fbt:translate`}</CodeBlock>
+          </TabItem>
+          <TabItem value="eloquent" label="Database">
+            <CodeBlock language="bash">{`composer require richarddobron/laravel-fbt
+php artisan vendor:publish --tag=fbt-config
+
+# Set 'driver' => 'eloquent' in config/fbt.php
+php artisan migrate
+
+# Wrap texts with @fbt(...), then collect them
+php artisan fbt:collect-fbts
+
+# Add translations to the fbt_translations table, then
+php artisan fbt:translate`}</CodeBlock>
+          </TabItem>
+        </Tabs>
+        <p className={styles.center}>
+          <Link to="/docs/getting_started">Read the full guide →</Link>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Agents() {
+  return (
+    <section className={clsx(styles.section, styles.sectionAlt)}>
+      <div className={clsx("container", styles.narrow)}>
+        <h2 className={styles.sectionTitle}>Let your coding agent set it up</h2>
+        <p className={styles.sectionLead}>
+          Paste this prompt into Claude Code, Cursor or Copilot, it installs laravel-fbt and wraps the texts of your
+          app.
+        </p>
+        <CodeBlock language="text" title="Prompt">
+          {agentPrompt}
+        </CodeBlock>
+      </div>
+    </section>
+  );
+}
+
+function BasedOn() {
+  return (
+    <section className={clsx(styles.section, styles.center)}>
+      <h2 className={styles.sectionTitle}>Based on Facebook's fbt</h2>
+      <a href="https://github.com/facebook/fbt">
+        <img className={styles.basedOnLogo} src={useBaseUrl("img/flogo_RGB_HEX-72.svg")} alt="Facebook" />
+      </a>
+    </section>
+  );
+}
+
+export default function Home() {
+  const { siteConfig } = useDocusaurusContext();
 
   return (
-    <Layout
-      title={`${siteConfig.title} - ${siteConfig.tagline}`}
-      description={siteConfig.tagline}
-    >
-      <header className={classnames("hero hero--primary", styles.heroBanner)}>
-        <div className={classnames("container", styles.topContainer)}>
-          <div>
-            <h1 className="hero__title">{siteConfig.title}</h1>
-            <div className={styles.sections}>
-              <div>
-                <p className="hero__subtitle">
-                  A PHP Internationalization Framework for Laravel 5.5+
-                </p>
-                <div className={styles.buttons}>
-                  <Link
-                    className={classnames(
-                      "button button--secondary button--lg",
-                      styles.button
-                    )}
-                    to="https://github.com/richardDobron/laravel-fbt"
-                  >
-                    Try it out
-                  </Link>
-                  <Link
-                    className={classnames(
-                      "button button--info button--lg",
-                      styles.button
-                    )}
-                    to="docs/getting_started"
-                  >
-                    Open documentation
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="splash_image">
-            <img
-              className={styles.splashImage}
-              src={useBaseUrl("img/fbt.png")}
-            />
-          </div>
-        </div>
-      </header>
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
+      <Hero />
       <main>
+        <InAction />
         <Features />
-        <Description />
-        <Showcase />
+        <GetStarted />
+        <Agents />
+        <BasedOn />
       </main>
     </Layout>
   );
-};
-
-export default Index;
+}

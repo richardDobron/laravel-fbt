@@ -34,25 +34,23 @@ The following options can be defined:
 
 * **project** `string`: (Default: `website app`) Project to which the text belongs
 * **author** `string`: Text author
-* **viewerContext** `string`: (Default: `\fbt\Lib\IntlViewerContext::class`)
+* **preserveWhitespace** `bool`: (Default: `false`)
+  - FBT normally consolidates whitespace down to one space (`' '`).
+  - Turn this off by setting this to `true`
+* **viewerContext** `string`: (Default: `\fbt\Runtime\Shared\IntlViewerContext::class`)
 * **locale** `string`: (Default: `en_US`) User locale.
-* **fbtCommon** `string`: (Default: `[]`) common strings, e.g. `[['text' => 'desc'], ...]`
-* **fbtCommonPath** `string`: (Default: `null`) Path to the common strings module.
-* **path** `string`: (Default: `storage_path('fbt/')`) Cache storage path for generated translations & source strings.
-* **fallback** `array`: (Default: `[]`) Fallback translations, e.g. `['de_AT' => 'de_DE']` 
+* **fbtCommon** `string`: (Default: `[]`) common string's, e.g. `[['text' => 'desc'], ...]`
+* **fbtCommonPath** `string`: (Default: `null`) Path to the common string's module.
 
 Below are the less important parameters.
 
-* **collectFbt** `bool`: (Default: `true`) Collect fbt instances from the source and store them to a JSON file (or the database, see `driver`).
-* **prettyPrint** `bool`: (Default: `true`) Pretty print source strings in a JSON file.
-* **hash_module** `string`: (Default: `md5`) Hash module. You can choose `md5` or `tiger` hash module.
-* **md5_digest** `string`: (Default: `hex`) Encoding of md5 hashes. You can choose `hex` (default in v4) or `base64` (default of fbt 5). Stored phrases and translations are keyed by it.
-* **fbtHashKeyModule** `callable|string`: (Default: `null`) Function computing the hash keys of callsites (the keys of `translatedFbts.json`), or a path to a PHP file returning it. It receives the `jsfbt.t` table of a phrase. By default, `fbtHash::fbtHashKey()` (jenkins hash) is used. The same function has to be used by the runtime and the `translate` command.
-* **driver** `string`: (Default: `json`) Storage of collected phrases and translations. You can choose `json` or `eloquent` (database).
-* **extraOptions** `array`: (Default: `[]`) Extra options allowed on fbt callsites, e.g. `['myOption' => true]`. Their values are passed to the runtime (see the [`getFbtResult` hook](hooks.md#getfbtresult--getfbsresult)).
-* **generateOuterTokenName** `bool`: (Default: `false`) Add the outer token name of inner strings to the collected phrases.
-* **debug** `bool`: (Default: `config('app.debug')`) Debug mode, e.g. a missing parameter throws an exception.
-* **logger** `bool`: (Default: `false`) Log impressions of displayed strings.
+* **logger** `bool`: (Default: `false`) Logging of string impressions.
+* **collectFbt** `bool`: (Default: `true`) Collect fbt instances from the source and store them in a database or a JSON file.
+* **hash_module** `string`: (Default: `md5`) Hash module.
+* **md5_digest** `string`: (Default: `hex`) MD5 digest.
+* **driver** `string`: (Default: `json`) Driver.
+* **path** `string`: Cache storage path for generated translations & source strings.
+
 
 ## 	🙋 IntlInterface
 Optional implementation of IntlInterface on User Model.
@@ -64,7 +62,7 @@ Example code:
 
 namespace App\Models\Auth;
 
-use fbt\Lib\IntlVariations;
+use fbt\Transform\FbtTransform\Translate\IntlVariations;
 use fbt\Lib\IntlViewerContextInterface;
 use fbt\Runtime\Gender;
 
@@ -110,16 +108,6 @@ php artisan fbt:generate-translations
 php artisan fbt:translate
 ```
 Read more about [translating](translating.md).
-
-4. This command migrates phrases stored in the database from v4 to v5 (`eloquent` driver).
-```shell
-php artisan fbt:migrate-v5 --digest=base64
-```
-Translation files (`json` driver) are migrated by:
-```shell
-php artisan fbt:migrate-v5 --digest=base64 --translations="./storage/fbt/translations/*.json"
-```
-**⚠️ NOTE: Set `md5_digest` to `base64` too.** Read more about [upgrading to fbt 5](upgrading.md).
 
 ## 📘 API
 

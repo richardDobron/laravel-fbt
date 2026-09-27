@@ -1,0 +1,95 @@
+{
+    "fb-locale": "tr_TR",
+    "translations": {
+        "a1cc4e7e258e80fa692c23e788a8ab1e": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "1 okunmamış mesajın var.",
+                    "variations": []
+                }
+            ]
+        },
+        "91212020e34c2afc0ffcd73f080e111d": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{count} okunmamış mesajın var.",
+                    "variations": []
+                }
+            ]
+        },
+        "2751c478db3b8b3cc12190ea777f0ec8": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} seninle bir fotoğraf paylaştı.",
+                    "variations": []
+                }
+            ]
+        },
+        "a793b282e121e0e8591dd6f566110fc4": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Siparişin kargoya verildi.",
+                    "variations": []
+                }
+            ]
+        },
+        "1ea709e2e6f1296b9ae9885d7d20a623": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Siparişin teslim edildi.",
+                    "variations": []
+                }
+            ]
+        },
+        "8d7d3388554e86cff7379d6681ffe8a1": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "Siparişin iptal edildi.",
+                    "variations": []
+                }
+            ]
+        },
+        "bb6a4be42d5c17e6cf37698db7f0e74a": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} profilini güncelledi.",
+                    "variations": []
+                }
+            ]
+        },
+        "7434aedc8d558af61a6ab222064f1d1d": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} profilini güncelledi.",
+                    "variations": []
+                }
+            ]
+        },
+        "01db673842502ee0737f97d8abd69da9": {
+            "tokens": [],
+            "types": [],
+            "translations": [
+                {
+                    "translation": "{name} profilini güncelledi.",
+                    "variations": []
+                }
+            ]
+        }
+    }
+}

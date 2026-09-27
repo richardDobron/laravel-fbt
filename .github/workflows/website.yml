@@ -1,0 +1,66 @@
+name: website
+
+on:
+    push:
+        branches: [main]
+        paths: ['docs/**', 'website/**', '.github/workflows/website.yml']
+    pull_request:
+        paths: ['docs/**', 'website/**', '.github/workflows/website.yml']
+
+permissions:
+    contents: write
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0
+
+            -   name: Setup Node
+                uses: actions/setup-node@v4
+                with:
+                    node-version: 22
+                    cache: npm
+                    cache-dependency-path: website/package-lock.json
+
+            -   name: Install dependencies
+                run: npm ci
+                working-directory: website
+
+            -   name: Build website
+                run: npm run build
+                working-directory: website
+
+            -   name: Deploy to GitHub Pages
+                if: github.event_name == 'push'
+                uses: peaceiris/actions-gh-pages@v4
+                with:
+                    github_token: ${{ secrets.GITHUB_TOKEN }}
+                    publish_dir: website/build
+
+    compare-docs:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+
+            -   name: Checkout fbt
+                uses: actions/checkout@v4
+                with:
+                    repository: richardDobron/fbt
+                    path: fbt
+
+            -   name: Compare docs
+                run: |
+                    {
+                        echo '## Differences from the docs of fbt'
+                        echo
+                        echo '```diff'
+                        diff -ru --exclude='*.png' --exclude='*.gif' fbt/docs docs || true
+                        echo '```'
+                    } >> "$GITHUB_STEP_SUMMARY"
