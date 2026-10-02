@@ -4,6 +4,15 @@ All notable changes to `laravel-fbt` will be documented in this file.
 
 Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## Unreleased
+### Added
+- `fbt:list` construct of fbt 5.1 (see [Lists](docs/lists.md))
+- `fbt:generate-translations --sort-by-hash` sorts the translation entries by hash key
+### Changed
+- Update `fbt` dependency to 5.1 (see [Upgrading to fbt 5.1](docs/upgrading.md#upgrading-to-fbt-51))
+### Fixed
+- Descriptions of the `--translations` and `--translation-input` options of `fbt:generate-translations` were swapped
+
 ## v5.0.0 - 2026-09-26
 See [UPGRADE.md](UPGRADE.md).
 ### Added

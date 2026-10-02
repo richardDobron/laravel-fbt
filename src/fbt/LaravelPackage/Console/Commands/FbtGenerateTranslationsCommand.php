@@ -14,8 +14,9 @@ class FbtGenerateTranslationsCommand extends Command
      * @var string
      */
     protected $signature = 'fbt:generate-translations {--src= : Path to collected source strings file}
-                                                      {--translations= : Path to translation input file}
-                                                      {--translation-input= : The translation files containing translations. E.g. `./path/to/translations/*.json`}';
+                                                      {--translations= : The translation files containing translations. E.g. `./path/to/translations/*.json`}
+                                                      {--translation-input= : Path to translation input file}
+                                                      {--sort-by-hash : Sort translation entries by hash key (both existing and new)}';
 
     /**
      * The console command description.
@@ -32,7 +33,8 @@ class FbtGenerateTranslationsCommand extends Command
             $translationsGeneratorService->generateTranslations(
                 $this->option('src') ?: $path . "/.source_strings.json",
                 $this->option('translations'),
-                $this->option('translation-input') ?: $path . "/translation_input.json"
+                $this->option('translation-input') ?: $path . "/translation_input.json",
+                (bool)$this->option('sort-by-hash')
             );
         } catch (\Throwable $e) {
             $this->error($e->getMessage());

@@ -26,13 +26,15 @@
             "fb-locale": "cs_CZ",
             "translations": {
                 "5484cc530aff8e1f4e3ea8dc28775f7e": {
+                    "description": "desc",
+                    "status": "new",
+                    "tokens": [],
                     "translations": [
                         {
-                            "translation": "",
-                            "variations": []
+                            "translation": "simple text",
+                            "variations": {}
                         }
                     ],
-                    "tokens": [],
                     "types": []
                 }
             }
@@ -41,13 +43,15 @@
             "fb-locale": "sk_SK",
             "translations": {
                 "5484cc530aff8e1f4e3ea8dc28775f7e": {
+                    "description": "desc",
+                    "status": "new",
+                    "tokens": [],
                     "translations": [
                         {
-                            "translation": "",
-                            "variations": []
+                            "translation": "simple text",
+                            "variations": {}
                         }
                     ],
-                    "tokens": [],
                     "types": []
                 }
             }

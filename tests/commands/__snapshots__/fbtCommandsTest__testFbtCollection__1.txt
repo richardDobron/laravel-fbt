@@ -145,6 +145,26 @@
         },
         {
             "hashToLeaf": {
+                "04944cdabfdf47d47bc5cc99f8c0812b": {
+                    "text": "Available Locations: {locations}.",
+                    "desc": "Lists"
+                }
+            },
+            "filepath": "tests/blade/views/fbt-list.blade.php",
+            "line_beg": 1,
+            "line_end": 1,
+            "author": "richard",
+            "project": "website app",
+            "jsfbt": {
+                "t": {
+                    "desc": "Lists",
+                    "text": "Available Locations: {locations}."
+                },
+                "m": []
+            }
+        },
+        {
+            "hashToLeaf": {
                 "bbb53f59ea93f686234661ddc8cb6654": {
                     "text": "Go on an {=awesome} vacation",
                     "desc": "It's simple"
@@ -299,7 +319,7 @@
     ],
     "childParentMappings": {
         "2": 1,
-        "8": 7,
-        "9": 8
+        "9": 8,
+        "10": 9
     }
 }

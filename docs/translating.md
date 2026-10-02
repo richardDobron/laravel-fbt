@@ -24,10 +24,17 @@ php artisan fbt:generate-translations --translations=./storage/fbt/translations/
 | --src                   | `FbtConfig::get('path')`/.source_strings.json   | Path to collected source strings file                                                                       |
 | --translation-input     | `FbtConfig::get('path')`/translation_input.json | Path to translation input file                                                                              |
 | --translations=`[path]` | *none*                                          | The translation files containing translations.<br />E.g. `--translations=./storage/fbt/translations/*.json` |
+| --sort-by-hash          | no                                              | Sort translation entries by hash key (both existing and new), for cleaner diffs of committed files          |
 
 Translation files have to be named by their locale (e.g. `de_DE.json`), other files are skipped.
 Each file contains a translation group (`{"fb-locale": "de_DE", "translations": {...}}`), so it can be passed to `fbt:translate --translations`.
 Without `--translations`, the missing translations are written to the `--translation-input` file.
+
+The translations are merged with the collected strings like `prepare-translations` of [fbtee](https://github.com/nkzw-tech/fbtee):
+new strings are added with their source text, their description and `"status": "new"`, and translations of strings that are no longer collected are removed.
+
+Entries marked as `new` are not translated yet, so `fbt:translate` skips them (remove the `status` once an entry is translated).
+The translations by hash (`--jenkins`, `--fbt-hash-module` and `translatedFbts.json`) omit the strings without a translation, so the source string is used.
 
 ## Command to convert provided translations to jenkins:
 ```shell
@@ -65,7 +72,8 @@ php ./vendor/bin/fbt translate --stdin --jenkins -o=./path/to/output/ < translat
 | --jenkins                    | no                     | Output the translations by locale and callsite hash (`{"cs_CZ": {"<hash>": <payload>}}`), like `translatedFbts.json`. Without it, the output is a list of translation groups (`[{"fb-locale": ..., "translatedPhrases": [...]}]`) |
 | --fbt-hash-module=`[path]`   | *none*                 | Like `--jenkins`, with the hashes computed by a PHP file returning a callable                                |
 | --output-dir=`[dir]`, -o=`[dir]` | *none*             | Write one `<locale>.json` file per locale into the directory instead of the standard output                 |
-| --strict                     | no                     | Stop on missing translations                                                                                 |
+| --output-file=`[file]`       | *none*                 | Write the combined output of all locales into a single file instead of the standard output                   |
+| --strict                     | no                     | Stop on missing translations: every collected string needs a completed translation in each translation group (missing entries, entries marked as `new` and entries without translations fail). An explicit empty translation is valid |
 | --pretty                     | no                     | Pretty print the translation output                                                                          |
 
 ## JSON schema:

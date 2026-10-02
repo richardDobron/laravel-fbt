@@ -48,3 +48,16 @@ To switch to `base64` (the default of fbt 5), set `md5_digest` to `base64` and c
 php artisan fbt:migrate-v5 --digest=base64
 php artisan fbt:migrate-v5 --digest=base64 --translations="./storage/fbt/translations/*.json"
 ```
+
+## Upgrading to fbt 5.1
+
+[fbt 5.1](https://github.com/richardDobron/fbt/blob/main/CHANGELOG.md) ports features of
+[fbtee](https://github.com/nkzw-tech/fbtee), e.g. [lists](lists.md). With the `json` driver, the translation files
+are handled differently:
+
+- `fbt:generate-translations` adds new strings with their source text, their description and `"status": "new"`, and
+  removes translations of strings that are no longer collected. Commit your translation files before running it.
+- `fbt:translate` skips entries marked as `new`, remove the `status` once an entry is translated. Strings without a
+  translation use the source string.
+
+The strings of [`intlList()`](utilities.md#intllist) have new descriptions, so they have to be translated again.
